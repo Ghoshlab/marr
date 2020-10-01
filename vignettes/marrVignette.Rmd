@@ -7,7 +7,7 @@ author:
   affiliation: Colorado School of Public Health
 - name: Daisy Philtron
   affiliation: Penn State University
-- name: \newline  Katerina Kechris
+- name:  Katerina Kechris
   affiliation: Colorado School of Public Health
 - name: Debashis Ghosh
   affiliation: Colorado School of Public Health
