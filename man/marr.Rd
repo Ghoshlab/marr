@@ -70,4 +70,12 @@ pFeatures=0.75, alpha=0.05)
 data("msprepCOPD")
 data_marr_COPD <- marr(object = msprepCOPD, pSamplepairs=0.75,
 pFeatures=0.75, alpha=0.05)
+
+}
+\references{
+Philtron, D., Lyu, Y., Li, Q. and Ghosh, D., 2018.
+Maximum Rank Reproducibility: A Nonparametric Approach to
+Assessing Reproducibility in Replicate Experiments.
+Journal of the American Statistical Association, 113(523),
+pp.1028-1039.
 }

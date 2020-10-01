@@ -7,7 +7,7 @@ for pairwise replicates from \code{marr} function.}
 \usage{
 marrPlotFeatures(
   object,
-  xLab = "Percent reproducible sample\\npairs per feature",
+  xLab = "Percent reproducible sample pairs per feature",
   yLab = "Feature"
 )
 }

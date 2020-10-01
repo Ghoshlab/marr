@@ -1,21 +1,58 @@
---- title: "The marr user's guide" author: - name: Tusharkanti Ghosh
-affiliation: Colorado School of Public Health - name: Max McGrath affiliation:
-Colorado School of Public Health - name: Daisy Philtron affiliation: Penn State
-University - name: Katerina Kechris affiliation: Colorado School of Public
-Health - name: Debashis Ghosh affiliation: Colorado School of Public Health
-output: BiocStyle::html_document: highlight: "tango" code_folding: show toc:
-true toc_float: collapsed: false package: marr abstract: marr (Maximum Rank
-Reproducibility) is a nonparametric approach that detects reproducible signals
-using a maximal rank statistic for high-dimensional biological data. vignette: |
-%\VignetteIndexEntry{The marr user's guide} %\VignetteEngine{knitr::rmarkdown}
-%\VignetteEncoding{UTF-8} ---
-```{r, include=FALSE, echo=FALSE} # date: "`r doc_date()`" # "`r
-pkg_ver('BiocStyle')`" # <style> #     pre { #     white-space: pre !important;
-#     overflow-y: scroll !important; #     height: 50vh !important; #     } #
-</style> ``` ---
-```{r, echo=FALSE, results="hide", message=FALSE} require(knitr)
-opts_chunk$set(error=FALSE, message=FALSE, warning=FALSE) ```
-```{r style, echo=FALSE, results='asis'} BiocStyle::markdown() ```
+---
+title: "The marr user's guide"
+author:
+- name: Tusharkanti Ghosh
+  affiliation: Colorado School of Public Health
+- name: Max McGrath
+  affiliation: Colorado School of Public Health
+- name: Daisy Philtron
+  affiliation: Penn State University
+- name: \newline  Katerina Kechris
+  affiliation: Colorado School of Public Health
+- name: Debashis Ghosh
+  affiliation: Colorado School of Public Health
+output: 
+  BiocStyle::html_document:
+    highlight: "tango"
+    code_folding: show
+    toc: true
+    toc_float: 
+      collapsed: false
+package: marr
+abstract: marr (Maximum Rank Reproducibility) is a
+          nonparametric approach that detects
+          reproducible signals using a maximal
+          rank statistic for high-dimensional biological data.
+vignette: |
+  %\VignetteIndexEntry{The marr user's guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}  
+---
+
+```{r, include=FALSE, echo=FALSE}
+# date: "`r doc_date()`"
+# "`r pkg_ver('BiocStyle')`"
+# <style>
+#     pre {
+#     white-space: pre !important;
+#     overflow-y: scroll !important;
+#     height: 50vh !important;
+#     }
+# </style>
+```
+---
+
+
+```{r, echo=FALSE, results="hide", message=FALSE}
+require(knitr)
+opts_chunk$set(error=FALSE, message=FALSE, warning=FALSE)
+```
+
+```{r style, echo=FALSE, results='asis'}
+BiocStyle::markdown()
+```
+
+
 ## Introduction
 Reproducibility is an on-going challenge with high-throughput technologies that
 have been developed in the last two decades for quantifying a wide range of
@@ -56,17 +93,21 @@ percentage signals ($100c_m\%$) are reproducible across all metabolites, i.e.,
 if $$ \frac{\sum_{m}{{r{_{m,(i,i')}}}}}{M}>c_m, $$ such that, $c_s \in (0,1)$.
 The reproducible signal matrix is shown in Figure 1 below.
 ```{r, echo=FALSE, fig.cap="Reproducible Signal matrix", out.width = '100%'}
-knitr::include_graphics("marr_schematic.png") ```
+knitr::include_graphics("marr_schematic.png")
+```
 # Getting Started
 Load the package in R
-```{r load-lib, message=FALSE} library(marr) ```
+```{r load-lib, message=FALSE}
+library(marr) 
+```
 # msprepCOPD Data
 The **marr** package contains a pre-processed data `SummarizedExperiment` of 645
 metabolites measured in plasma and 20 biological replicates from the
 multi-center Genetic Epidemiology of COPD (COPDGene) study which was designed to
 study the underlying genetic factors of COPD, @Regan2010. We only used a subset
 of the original raw COPD data in this vignette.
-## msprepCOPD data pre-processing using the **MSPrep** pipeline
+
+## msprepCOPD data pre-processing
 The **msprepCOPD** data  in the **marr** package was pre-processed using the
 MSPrep software @Hughes2013. The data pre-processing include $3$ steps and they
 are as follows: 1. `Filtering`: Metabolites are removed if they are missing more
@@ -76,8 +117,11 @@ remain.
 2. `Missing value imputation technique`: We apply Bayesian Principal Component
 Analysis (BPCA) to impute missing values @hastie1999imputing.
 3. `Normalization`: Median normalization are performed.
-```{r data-1, message=FALSE, warning=FALSE} data("msprepCOPD") msprepCOPD
+```{r data-1, message=FALSE, warning=FALSE}
+data("msprepCOPD")
+msprepCOPD
 ```
+
 # Using the `marr()` function
 ## Input for `marr()`
 The `marr()` function must have one object as input:
@@ -94,31 +138,45 @@ to be reproducible using a threshold value of `pFeatures` ($c_m=0.75$).
 4. `alpha`: **optional** level of significance to control the False Discovery
 rate (FDR). Default is $0.05$ (i.e., $\alpha=0.05$).
 ## Running `marr()`
-### msprepCOPD SummarizedExperiment example - Evaluating reproducibility We
-apply the marr procedure to assess the reproducibility of replicates in the
+### msprepCOPD SummarizedExperiment example - Evaluating reproducibility
+
+We apply the marr procedure to assess the reproducibility of replicates in the
 msprepCOPD data. The distribution of reproducible pairs and metabolites
 (features) are illustrated in Figures 2 and 3, respectively.
 To run the `marr()` function, we only input the data object. We obtain 4 outputs
 after running the `marr()` function. They are shown below:
-```{r marr_output} library(marr) marr_output<- marr(msprepCOPD, pSamplepairs =
-0.75, pFeatures = 0.75, alpha=0.05) marr_output ## Head of reproducible sample
-pairs per metabolite (feature) head(marrFeatures(marr_output))
+```{r marr_output}
+library(marr)
+marr_output<- marr(msprepCOPD, pSamplepairs =
+0.75, pFeatures = 0.75, alpha=0.05)
+marr_output
+## Head of reproducible sample pairs per metabolite (feature)
+head(marrFeatures(marr_output))
 ## Head of reproducible metabolites (features) per sample pair
 head(marrSamplepairs(marr_output))
-## Percent of reproducible sample pairs per metabolite (feature) greater than
-75% marrFeaturesfiltered(marr_output)
-## Percent of reproducible metabolites (features) per sample pair greater than
-75% marrSamplepairsfiltered(marr_output) ```
+## Percent of reproducible sample pairs per metabolite (feature)
+##greater than 75%
+marrFeaturesfiltered(marr_output)
+## Percent of reproducible metabolites (features) per sample pair
+## greater than 75%
+marrSamplepairsfiltered(marr_output)
+```
 The distribution of reproducible metabolites/features (sample pairs) per sample
-pair (metabolite) can be extracted using the` marrSamplepairs()` (`
-marrFeatures()`) function (see above). The distribution of reproducible
+pair (metabolite) can be extracted using the` marrSamplepairs()` 
+(`marrFeatures()`) function (see above). The distribution of reproducible
 metabolites/features  and sample pairs can plotted using the
 `marrPlotSamplepairs()` and `marrPlotFeatures()` functions, respectively (see
 below).
+
 ```{r fig.cap="Distribution of reproducible metabolites", plot-marr-Samplepairs}
-marrPlotSamplepairs(marr_output) ```
+marrPlotSamplepairs(marr_output) 
+```
+
 ```{r fig.cap="Distribution of reproducible sample pairs",plot-marr-Metabolites}
-marrPlotFeatures(marr_output) ``` Figure 2 (3) illustrates percentage of
+marrPlotFeatures(marr_output) 
+```
+
+Figure 2 (3) illustrates percentage of
 reproducible metabolites (sample pairs) per sample pair (metabolite) in the
 $x$-axis.  In Figure 2 (3), the higher percentage of reproducible metabolites
 (sample pairs) per sample pair (metabolite) in the $x$-axis would indicate
@@ -131,4 +189,6 @@ percentage of reproducible metabolites (sample pairs) per sample pair
 sample pairs (of a metabolite across all sample pairs).
 # References
 # Session Info
-```{r session-info} sessionInfo() ```
+```{r session-info}
+sessionInfo() 
+```

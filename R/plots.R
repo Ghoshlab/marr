@@ -25,8 +25,9 @@
 #' pFeatures=0.75, alpha=0.05)
 #' marrPlotSamplepairs(data_marr)
 #'
-marrPlotSamplepairs <- function(object, xLab = "Percent reproducible features
-per sample pair", yLab = "Sample pair") {
+marrPlotSamplepairs <- function(  object,
+        xLab = "Percent reproducible features per sample pair",
+        yLab = "Sample pair") {
         w = object@marrSamplepairs
         df11 = data.frame(w)
         suppressMessages(ggplot(df11, aes(x = w))
@@ -60,8 +61,9 @@ per sample pair", yLab = "Sample pair") {
 #' pFeatures=0.75, alpha=0.05)
 #' marrPlotFeatures(data_marr)
 #'
-marrPlotFeatures <- function(object, xLab = "Percent reproducible sample
-pairs per feature", yLab = "Feature") {
+marrPlotFeatures <- function(  object,
+        xLab = "Percent reproducible sample pairs per feature",
+        yLab = "Feature") {
         ww = object@marrFeatures
         df12 = data.frame(ww)
         suppressMessages(ggplot(df12, aes(x = ww))

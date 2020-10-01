@@ -41,7 +41,8 @@ NULL
 #          estFdr = the estimated fdr value for each of potential N-hat
 #          SS = vector of values for SS loss function evaluated
 #               at i/n =0, 1/n, 2/n,..., 1
-#          whichSig = vector of indices for maximum ranks declared to be reproducible
+#          whichSig = vector of indices for maximum ranks declared to
+#                     be reproducible
 .MaRR = function(maxRank, cutoff = 0.9, alpha = 0.05,
             khat.to.zero = FALSE) {
             maxx = floor(cutoff * length(maxRank))

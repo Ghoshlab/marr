@@ -4,16 +4,21 @@ Title: Maximum rank reproducibility
 Version: 0.99.0
 Date: 2020-09-30
 Authors@R:  
-  c(person("Tusharkanti", "Ghosh",
+  c(person("Tusharkanti",
+            "Ghosh",
            email = "tusharkantighosh30@gmail.com",
            role = c("aut", "cre")),
-    person("Max", "McGrath",
+    person("Max",
+            "McGrath",
            role = c("aut")),
-    person("Daisy", "Philtron",
+    person("Daisy",
+            "Philtron",
            role = c("aut")),
-    person("Katerina", "Kechris",
+    person("Katerina",
+            "Kechris",
            role = c("aut")),
-    person("Debashis", "Ghosh",
+    person("Debashis",
+            "Ghosh",
            role = c("aut", "cph", "ths")))
 Imports: Rcpp, SummarizedExperiment, utils,
      methods, ggplot2
