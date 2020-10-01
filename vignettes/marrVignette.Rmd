@@ -7,7 +7,7 @@ author:
   affiliation: Colorado School of Public Health
 - name: Daisy Philtron
   affiliation: Penn State University
-- name:  Katerina Kechris
+- name: Katerina Kechris
   affiliation: Colorado School of Public Health
 - name: Debashis Ghosh
   affiliation: Colorado School of Public Health
@@ -160,6 +160,8 @@ marrPlotSamplepairs(marr_output)
 ```{r fig.cap="Distribution of reproducible sample pairs",plot-marr-Metabolites}
 marrPlotFeatures(marr_output)
 ```
+Figure 2 (3) illustrates percentage of reproducible metabolites (sample pairs) per sample pair (metabolite) in the $x$-axis.  In Figure 2 (3), the higher percentage of reproducible metabolites (sample pairs) per sample pair (metabolite) in the $x$-axis would indicate stronger reproducibility between the sample pairs (of a metabolite across all sample pairs).
+
 Figure 2 (3) illustrates percentage of reproducible metabolites (sample pairs) per sample pair (metabolite) in the $x$-axis.  In Figure 2 (3), the higher percentage of reproducible metabolites (sample pairs) per sample pair (metabolite) in the $x$-axis would indicate stronger reproducibility between the sample pairs (of a metabolite across all sample pairs).
 
 # References
