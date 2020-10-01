@@ -1,0 +1,31 @@
+Package: marr
+Type: Package
+Title: Maximum rank reproducibility
+Version: 0.99.0
+Date: 2020-09-30
+Authors@R:  
+  c(person("Tusharkanti", "Ghosh",
+           email = "tusharkantighosh30@gmail.com",
+           role = c("aut", "cre")),
+    person("Max", "McGrath",
+           role = c("aut")),
+    person("Daisy", "Philtron",
+           role = c("aut")),
+    person("Katerina", "Kechris",
+           role = c("aut")),
+    person("Debashis", "Ghosh",
+           role = c("aut", "cph", "ths")))
+Imports: Rcpp, SummarizedExperiment, utils,
+     methods, ggplot2
+LinkingTo: Rcpp
+Depends: R (>= 4.0)
+Suggests: knitr, rmarkdown,
+    BiocStyle, testthat
+VignetteBuilder: knitr
+Encoding: UTF-8
+License: GPL (>= 2)
+Description: marr (Maximum Rank Reproducibility) measures the reproducibility 
+    of features per sample pair and sample pairs per feature in high-dimensional
+    biological replicate experiments. 
+biocViews: QualityControl, Metabolomics, MassSpectrometry, RNASeq, ChIPSeq
+RoxygenNote: 7.1.1
