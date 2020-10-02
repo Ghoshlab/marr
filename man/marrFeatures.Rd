@@ -14,7 +14,7 @@ marrFeatures(object)
 \item{object}{an object of class \code{marr}.}
 }
 \value{
-The distribution of percent reproducible features
+The distribution of percent reproducible sample pairs
 (row-wise) per feature after applying the maximum rank
 reproducibility.
 }
