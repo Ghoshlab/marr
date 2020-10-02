@@ -42,7 +42,7 @@ setMethod(f = "marrSamplepairs", signature(object = "marr"),
 #' @aliases marrFeatures marrFeatures,marr-method
 #' @param object an object of class \code{marr}.
 #'
-#' @return The distribution of percent reproducible features
+#' @return The distribution of percent reproducible sample pairs
 #' (row-wise) per feature after applying the maximum rank
 #' reproducibility.
 #'
