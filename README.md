@@ -80,7 +80,7 @@ plotted using the `marrPlotFeatures()` function.
 The percent reproducible features per sample pair can be directly
 plotted using the `marrPlotSamplepairs()` function.
 
-    marrPlotFeatures(marrOutput) 
+    marrPlotSamplepairs(marrOutput) 
 
 For more details, see `vignettes`.
 
