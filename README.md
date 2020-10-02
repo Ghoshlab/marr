@@ -14,7 +14,7 @@ experiments.
 
 ### Method
 
-The `marr` paper published in *Journal of American statistical
+The `marr` paper published in *Journal of American Statistical
 Association*:
 
 > Philtron, Daisy, et al. “Maximum Rank Reproducibility: A Nonparametric
