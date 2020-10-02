@@ -1,12 +1,20 @@
 Package: marr
 Type: Package
 Title: Maximum rank reproducibility
-Version: 0.99.0
+Version: 0.99.1
 Date: 2020-10-02
-Author: Tusharkanti Ghosh [aut, cre], Max McGrath [aut],
-        Daisy Philtron [aut], Katerina Kechris [aut],
-        Debashis Ghosh [aut, cph]
-Maintainer: Tusharkanti Ghosh <tusharkantighosh30@gmail.com>
+Authors@R:
+    c(person("Tusharkanti", "Ghosh",
+           email = "tusharkantighosh30@gmail.com",
+           role = c("aut", "cre")),
+    person("Max", "McGrath",
+           role = c("aut")),
+    person("Daisy", "Philtron",
+           role = c("aut")),
+    person("Katerina", "Kechris",
+           role = c("aut")),
+    person("Debashis", "Ghosh",
+           role = c("aut", "cph")))
 Imports: Rcpp, SummarizedExperiment, utils,
      methods, ggplot2
 LinkingTo: Rcpp
