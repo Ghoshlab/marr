@@ -61,13 +61,16 @@ To run the `marr()` function,
 Individual slots can be extracted using accessor methods:
 
     marrSamplepairs(marrOutput) # extract the distribution of percent
-    reproducible features (column-wise) per sample pair
+    #reproducible features (column-wise) per sample pair
+    
     marrFeatures(marrOutput) # extract the distribution of percent
-    reproducible sample pairs (row-wise) per feature
+    #reproducible sample pairs (row-wise) per feature
+    
     marrSamplepairsfiltered(marrOutput) # extract the percent of reproducible
-    features based on a threshold value.
+    #features based on a threshold value
+    
     marrFeaturesfiltered(marrOutput) # extract the percent of reproducible
-    sample pairs based on a threshold value.
+    #sample pairs based on a threshold value
 
 The percent reproducible sample pairs per feature can be directly
 plotted using the `marrPlotFeatures()` function.
