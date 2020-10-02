@@ -15,7 +15,7 @@
 #' mass/retention-time combination for each subject combination.
 #'
 #' @docType data
-#' @format SummarizedExperiment object containing
+#' @format SummarizedExperiment assay object containing
 #' 645 metabolites (features) of 20 subjects (samples).
 #' \describe{
 #' \item{Mass}{Mass-to-charge ratio}

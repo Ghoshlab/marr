@@ -5,6 +5,12 @@ language: R
 cache: packages
 r:
     - bioc-devel
-os:
-    - linux
-    - osx
+warning_are_errors: true
+
+r_packages:
+    - covr
+bioc_packages:
+    - BiocCheck
+
+after_success:
+    - Rscript -e 'covr::codecov(type = "all")'

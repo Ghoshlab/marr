@@ -5,7 +5,7 @@
 \alias{msprepCOPD}
 \title{Example of processed mass spectrometry dataset}
 \format{
-SummarizedExperiment object containing
+SummarizedExperiment assay object containing
 645 metabolites (features) of 20 subjects (samples).
 \describe{
 \item{Mass}{Mass-to-charge ratio}
