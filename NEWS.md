@@ -1,3 +1,7 @@
+# marr 0.99.2
+
+* Expanded Description and changed the binwidth parameter in histograms on October 16, 2020.
+
 # marr 0.99.1
 
 * Added Authors@R to the description file.
