@@ -30,9 +30,9 @@ marrPlotSamplepairs <- function(  object,
         yLab = "Sample pair") {
         w = object@marrSamplepairs
         df11 = data.frame(w)
-        suppressMessages(ggplot(df11, aes(x = w))
-        + geom_histogram(color = "black",
-        fill = "white") + ylab(yLab) + xlab(xLab))
+        ggplot(df11, aes(x = w))+
+        geom_histogram(binwidth=2,color = "black",
+        fill = "white") + ylab(yLab) + xlab(xLab)
 }
 #' @title Plot percent reproducible sample pairs per feature
 #' for pairwise replicates from \code{marr} function.
@@ -66,7 +66,7 @@ marrPlotFeatures <- function(  object,
         yLab = "Feature") {
         ww = object@marrFeatures
         df12 = data.frame(ww)
-        suppressMessages(ggplot(df12, aes(x = ww))
-        + geom_histogram(color = "black",
-        fill = "white") + ylab(yLab) + xlab(xLab))
+        ggplot(df12, aes(x = ww))+
+        geom_histogram(binwidth=2,color = "black",
+        fill = "white") + ylab(yLab) + xlab(xLab)
 }
