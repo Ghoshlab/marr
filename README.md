@@ -3,18 +3,18 @@
 status](https://travis-ci.com/Ghoshlab/Marr.svg?branch=master)](https://travis-ci.com/Ghoshlab/Marr)
 [![codecov](https://codecov.io/gh/Ghoshlab/Marr/branch/master/graph/badge.svg?token=K3CDL7MEN2)](https://codecov.io/gh/Ghoshlab/Marr)
 
-Marr
+marr
 ====
 
-### `Marr`: An R package for Maximum Rank Reproducibility (Marr) for high-dimensional biological data.
+### `marr`: An R package for Maximum Rank Reproducibility (marr) for high-dimensional biological data.
 
-`Marr` measures the reproducibility of features per sample pair and
+`marr` measures the reproducibility of features per sample pair and
 sample pairs per feature in high-dimensional biological replicate
 experiments.
 
 ### Method
 
-The `Marr` paper published in *Journal of American Statistical
+The `marr` paper published in *Journal of American Statistical
 Association*:
 
 > Philtron, Daisy, et al. “Maximum Rank Reproducibility: A Nonparametric
@@ -29,17 +29,17 @@ Association*:
 
 ### Installing Marr
 
-The R-package **Marr** can be installed from GitHub using the R package
+The R-package **marr** can be installed from GitHub using the R package
 [devtools](https://github.com/hadley/devtools):
 
-Use to install the latest version of **Marr** from GitHub:
+Use to install the latest version of **marr** from GitHub:
 
     if (!require("devtools")) install.packages("devtools")
-    devtools::install_github("Ghoshlab/Marr")
+    devtools::install_github("Ghoshlab/marr")
 
-### Using Marr
+### Using marr
 
-The main function in the **Marr** package is `Marr()`. The `Marr()`
+The main function in the **marr** package is `Marr()`. The `Marr()`
 function needs one required object and three optional objects: (1)
 object: a data frame or a matrix or a Summarized Experiment with one
 assay object with observations (e.g., metabolites or genes) on the rows
