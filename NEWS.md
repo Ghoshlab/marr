@@ -1,8 +1,11 @@
-# Marr 0.99.3
+# marr 0.99.4
 
 * code indentation updated.
 * Renamed the class and constructor from marr to Marr.
-* Also renamed the first lower case letter of the package name: marr -> Marr
+
+# Marr 0.99.3
+
+* failed to push
 
 
 # marr 0.99.2
