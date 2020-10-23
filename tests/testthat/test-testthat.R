@@ -1,7 +1,7 @@
 library(testthat)
-context("checking the Marr function")
+context("checking the marr package")
 
-library(Marr)
+library(marr)
 
 test_that("checking dimensions of Marr object", {
         n_features <- 1200
