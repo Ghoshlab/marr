@@ -32,7 +32,7 @@
 #' and a numeric value of the Marr filtered sample pairs in the
 #' \code{MarrFeaturesfiltered} slot.
 #' @details
-#' Marr (Maximum Rank Reproducibility) is a nonparametric approach,
+#' marr (Maximum Rank Reproducibility) is a nonparametric approach,
 #' which assesses reproducibility in high-dimensional biological
 #' replicate experiments. Although it
 #' was originally developed for RNASeq data it can be
