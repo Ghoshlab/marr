@@ -56,7 +56,7 @@ is 0.05.
 To run the `Marr()` function,
 
     MarrOutput <- Marr(object = dataSE, pSamplepairs=0.75,
-    pFeatures=0.75, alpha=0.05)
+                       pFeatures=0.75, alpha=0.05)
 
 Individual slots can be extracted using accessor methods:
 
