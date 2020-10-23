@@ -5,7 +5,7 @@
 
 # marr 0.99.3
 
-* failed to push
+* Bioconductor single package building error
 
 
 # marr 0.99.2
