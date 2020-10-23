@@ -3,7 +3,7 @@
 * code indentation updated.
 * Renamed the class and constructor from marr to Marr on October 23, 2020.
 
-# Marr 0.99.3
+# marr 0.99.3
 
 * failed to push
 
