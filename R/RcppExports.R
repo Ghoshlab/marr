@@ -2,38 +2,38 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 .seqen <- function(n) {
-    .Call('_marr_seqen', PACKAGE = 'marr', n)
+    .Call('_Marr_seqen', PACKAGE = 'Marr', n)
 }
 
 .reptest2 <- function(x, y) {
-    .Call('_marr_reptest2', PACKAGE = 'marr', x, y)
+    .Call('_Marr_reptest2', PACKAGE = 'Marr', x, y)
 }
 
 .cumsumSS <- function(x) {
-    .Call('_marr_cumsumSS', PACKAGE = 'marr', x)
+    .Call('_Marr_cumsumSS', PACKAGE = 'Marr', x)
 }
 
 .subset_range1 <- function(x, start, end) {
-    .Call('_marr_subset_range1', PACKAGE = 'marr', x, start, end)
+    .Call('_Marr_subset_range1', PACKAGE = 'Marr', x, start, end)
 }
 
 .ssapplySSS <- function(xx) {
-    .Call('_marr_sapplySSS', PACKAGE = 'marr', xx)
+    .Call('_Marr_sapplySSS', PACKAGE = 'Marr', xx)
 }
 
 .getSS <- function(maxRank) {
-    .Call('_marr_getSS', PACKAGE = 'marr', maxRank)
+    .Call('_Marr_getSS', PACKAGE = 'Marr', maxRank)
 }
 
 .seqenkhat <- function(n, k) {
-    .Call('_marr_seqenkhat', PACKAGE = 'marr', n, k)
+    .Call('_Marr_seqenkhat', PACKAGE = 'Marr', n, k)
 }
 
 .sapplykhat <- function(khat, maxRank) {
-    .Call('_marr_sapplykhat', PACKAGE = 'marr', khat, maxRank)
+    .Call('_Marr_sapplykhat', PACKAGE = 'Marr', khat, maxRank)
 }
 
 .RNhatcpp <- function(khat, maxRank) {
-    .Call('_marr_RNhatcpp', PACKAGE = 'marr', khat, maxRank)
+    .Call('_Marr_RNhatcpp', PACKAGE = 'Marr', khat, maxRank)
 }
 

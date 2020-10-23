@@ -1,32 +1,32 @@
-#' Generic function that returns the marr sample pairs
+#' Generic function that returns the Marr sample pairs
 #'
-#' Given a marr object, this function returns the
-#' marr sample pairs
-#' @rdname marrSamplepairs
-setGeneric(name = "marrSamplepairs", def = function(object) {
-            standardGeneric("marrSamplepairs")
+#' Given a Marr object, this function returns the
+#' Marr sample pairs
+#' @rdname MarrSamplepairs
+setGeneric(name = "MarrSamplepairs", def = function(object) {
+            standardGeneric("MarrSamplepairs")
 })
-#' Generic function that returns the marr features
+#' Generic function that returns the Marr features
 #'
-#' Given a marr object, this function returns the
-#' marr features
-#' @rdname marrFeatures
-setGeneric(name = "marrFeatures", def = function(object) {
-            standardGeneric("marrFeatures")
+#' Given a Marr object, this function returns the
+#' Marr features
+#' @rdname MarrFeatures
+setGeneric(name = "MarrFeatures", def = function(object) {
+            standardGeneric("MarrFeatures")
 })
-#' Generic function that returns the marr filtered sample pairs
+#' Generic function that returns the Marr filtered sample pairs
 #'
-#' Given a marr object, this function returns the
-#' marr filtered sample pairs
-#' @rdname marrSamplepairsfiltered
-setGeneric(name = "marrSamplepairsfiltered", def = function(object) {
-            standardGeneric("marrSamplepairsfiltered")
+#' Given a Marr object, this function returns the
+#' Marr filtered sample pairs
+#' @rdname MarrSamplepairsfiltered
+setGeneric(name = "MarrSamplepairsfiltered", def = function(object) {
+            standardGeneric("MarrSamplepairsfiltered")
 })
-#' Generic function that returns the marr filtered features
+#' Generic function that returns the Marr filtered features
 #'
-#' Given a marr object, this function returns the
-#' marr filtered features
-#' @rdname marrFeaturesfiltered
-setGeneric(name = "marrFeaturesfiltered", def = function(object) {
-            standardGeneric("marrFeaturesfiltered")
+#' Given a Marr object, this function returns the
+#' Marr filtered features
+#' @rdname MarrFeaturesfiltered
+setGeneric(name = "MarrFeaturesfiltered", def = function(object) {
+            standardGeneric("MarrFeaturesfiltered")
 })

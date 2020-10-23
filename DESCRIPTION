@@ -1,8 +1,8 @@
-Package: marr
+Package: Marr
 Type: Package
 Title: Maximum rank reproducibility
-Version: 0.99.2
-Date: 2020-10-16
+Version: 0.99.3
+Date: 2020-10-23
 Authors@R:
     c(person("Tusharkanti", "Ghosh",
            email = "tusharkantighosh30@gmail.com",
@@ -28,7 +28,7 @@ Suggests:
 VignetteBuilder: knitr
 Encoding: UTF-8
 License: GPL (>= 3)
-Description: marr (Maximum Rank Reproducibility) is a
+Description: Marr (Maximum Rank Reproducibility) is a
           nonparametric approach that detects
           reproducible signals using a maximal
           rank statistic for high-dimensional biological data. 
@@ -44,5 +44,5 @@ Description: marr (Maximum Rank Reproducibility) is a
           identification of reproducible features and sample pairs
           based on output visualization checks (histograms). 
 biocViews: QualityControl, Metabolomics, MassSpectrometry, RNASeq, ChIPSeq
-BugReports: https://github.com/Ghoshlab/marr/issues
+BugReports: https://github.com/Ghoshlab/Marr/issues
 RoxygenNote: 7.1.1

@@ -1,12 +1,12 @@
 #' @title Plot percent reproducible features per sample pair
-#' for pairwise replicates from \code{marr} function.
+#' for pairwise replicates from \code{Marr} function.
 #'
 #' @description This function plots a histogram
 #' showing the sample pairs along the y-axis
 #' and percent reproducible features per sample pair on
 #' the x-axis.
 #'
-#' @param object a marr object from \code{marr}
+#' @param object a Marr object from \code{Marr}
 #' @param xLab label for x-axis.
 #' Default is 'Percent reproducible features
 #'  per sample pair for pairwise replicates'.
@@ -21,28 +21,28 @@
 #' @export
 #' @examples
 #' data <- matrix(rnorm(2400), nrow=200, ncol=12)
-#' data_marr <- marr(object = data, pSamplepairs=0.75,
-#' pFeatures=0.75, alpha=0.05)
-#' marrPlotSamplepairs(data_marr)
+#' data_Marr <- Marr(object = data, pSamplepairs=0.75,
+#'                   pFeatures=0.75, alpha=0.05)
+#' MarrPlotSamplepairs(data_Marr)
 #'
-marrPlotSamplepairs <- function(  object,
+MarrPlotSamplepairs <- function(  object,
         xLab = "Percent reproducible features per sample pair",
         yLab = "Sample pair") {
-        w = object@marrSamplepairs
+        w = object@MarrSamplepairs
         df11 = data.frame(w)
         ggplot(df11, aes(x = w))+
         geom_histogram(binwidth=2,color = "black",
         fill = "white") + ylab(yLab) + xlab(xLab)
 }
 #' @title Plot percent reproducible sample pairs per feature
-#' for pairwise replicates from \code{marr} function.
+#' for pairwise replicates from \code{Marr} function.
 #'
 #' @description This function plots a histogram
 #' showing the features along the y-axis
 #' and percent reproducible sample pairs per feature on
 #' the x-axis.
 #'
-#' @param object a marr object from \code{marr}
+#' @param object a Marr object from \code{Marr}
 #' @param xLab label for x-axis.
 #' Default is 'Percent reproducible sample pairs
 #' per feature for pairwise replicates'.
@@ -57,14 +57,14 @@ marrPlotSamplepairs <- function(  object,
 #' @export
 #' @examples
 #' data <- matrix(rnorm(2400), nrow=200, ncol=12)
-#' data_marr <- marr(object = data, pSamplepairs=0.75,
-#' pFeatures=0.75, alpha=0.05)
-#' marrPlotFeatures(data_marr)
+#' data_Marr <- Marr(object = data, pSamplepairs=0.75,
+#'                   pFeatures=0.75, alpha=0.05)
+#' MarrPlotFeatures(data_Marr)
 #'
-marrPlotFeatures <- function(  object,
+MarrPlotFeatures <- function(  object,
         xLab = "Percent reproducible sample pairs per feature",
         yLab = "Feature") {
-        ww = object@marrFeatures
+        ww = object@MarrFeatures
         df12 = data.frame(ww)
         ggplot(df12, aes(x = ww))+
         geom_histogram(binwidth=2,color = "black",

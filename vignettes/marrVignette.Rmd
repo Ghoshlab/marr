@@ -1,5 +1,5 @@
 ---
-title: "The marr user's guide"
+title: "The Marr user's guide"
 author:
 - name: Tusharkanti Ghosh
   affiliation: Colorado School of Public Health
@@ -18,15 +18,15 @@ output:
     toc: true
     toc_float: 
       collapsed: false
-package: marr
-abstract: marr (Maximum Rank Reproducibility) is a
+package: Marr
+abstract: Marr (Maximum Rank Reproducibility) is a
           nonparametric approach that detects
           reproducible signals using a maximal
           rank statistic for high-dimensional biological data.
 citation_package: natbib
-bibliography: marr.bib
+bibliography: Marr.bib
 vignette: |
-  %\VignetteIndexEntry{The marr user's guide}
+  %\VignetteIndexEntry{The Marr user's guide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 ---
@@ -81,16 +81,16 @@ assess how these biological and technical variables affect reproducibility
 across replicate experiments (@talloen2010filtering, 
 @arvidsson2008quantprime).
 
-In this vignette, we introduce the marr procedure @Philtron2018, referred to as
-**maximum rank reproducibility** (**marr**) to identify reproducible features in
+In this vignette, we introduce the Marr procedure @Philtron2018, referred to as
+**maximum rank reproducibility** (**Marr**) to identify reproducible features in
 high-throughput replicate experiments. In this vignette, we demonstrate with an 
-example data set that the (ma)ximum (r)ank (r)eproducibility (MaRR) procedure
+example data set that the (ma)ximum (r)ank (r)eproducibility (Marr) procedure
 can be adapted to high-throughput MS-Metabolomics experiments across
 (biological or technical) replicate samples
 (Ghosh et al, 2020, in preparation).
 
-The marr procedure was originally proposed to assess reproducibility of gene
-ranks in replicate experiments. The `marr` R-package contains the `marr()`
+The Marr procedure was originally proposed to assess reproducibility of gene
+ranks in replicate experiments. The `Marr` R-package contains the `Marr()`
 function, which calculates  a matrix of signals ($\text{irreproducible}=0$,
 $\text{reproducible}=1$) with $M$ rows (total number of features) and $J$
 columns ($J={I \choose 2}$) (replicate sample pairs ${I \choose 2}$), where
@@ -109,18 +109,18 @@ such that, $c_s \in (0,1)$.
 
 The reproducible signal matrix is shown in Figure 1 below.
 ```{r, echo=FALSE, fig.cap="Reproducible Signal matrix", out.width = '100%'}
-knitr::include_graphics("marr_schematic.png")
+knitr::include_graphics("Marr_schematic.png")
 ```
 # Getting Started
 
 Load the package in R
 ```{r load-lib, message=FALSE}
-library(marr) 
+library(Marr) 
 ```
 
 # msprepCOPD Data
 
-The **marr** package contains a pre-processed data `SummarizedExperiment` assay 
+The **Marr** package contains a pre-processed data `SummarizedExperiment` assay 
 object of 645 metabolites (features) measured in plasma and 20 biological
 replicates from the multi-center Genetic Epidemiology of COPD (COPDGene) study
 which was designed to study the underlying genetic factors of COPD,
@@ -129,7 +129,7 @@ vignette.
 
 ## msprepCOPD data pre-processing
 
-The **msprepCOPD** data  in the **marr** package was pre-processed using the
+The **msprepCOPD** data  in the **Marr** package was pre-processed using the
 MSPrep software (@Hughes2013). The data pre-processing include $3$ steps and
 they are as follows:
 1. `Filtering`: Metabolites are removed if they are missing more
@@ -145,13 +145,13 @@ data("msprepCOPD")
 msprepCOPD
 ```
 
-# Using the `marr()` function
+# Using the `Marr()` function
 
-## Input for `marr()`
-The `marr()` function must have one object as input:
+## Input for `Marr()`
+The `Marr()` function must have one object as input:
 1. `object`: a data frame or a matrix or a SummarizedExperiment object with
 abundance measurements of metabolites (features) on the rows and replicates
-(samples) as the columns. `marr()` accepts objects which are a data frame or
+(samples) as the columns. `Marr()` accepts objects which are a data frame or
 matrix with observations (e.g. metabolites) on the rows and replicates as the
 columns.
 2. `pSamplepairs`: **optional** We assign a metabolite (feature) for a replicate
@@ -162,45 +162,45 @@ to be reproducible using a threshold value of `pFeatures` ($c_m=0.75$).
 4. `alpha`: **optional** level of significance to control the False Discovery
 rate (FDR). Default is $0.05$ (i.e., $\alpha=0.05$).
 
-## Running `marr()`
+## Running `Marr()`
 
 ### msprepCOPD SummarizedExperiment example - Evaluating reproducibility
 
-We apply the marr procedure to assess the reproducibility of replicates in the
+We apply the Marr procedure to assess the reproducibility of replicates in the
 msprepCOPD data. The distribution of reproducible pairs and metabolites
 (features) are illustrated in Figures 2 and 3, respectively.
-To run the `marr()` function, we only input the data object. We obtain 4 outputs
-after running the `marr()` function. They are shown below:
+To run the `Marr()` function, we only input the data object. We obtain 4 outputs
+after running the `Marr()` function. They are shown below:
 
-```{r marr_output}
-library(marr)
-marr_output<- marr(msprepCOPD, pSamplepairs =
-0.75, pFeatures = 0.75, alpha=0.05)
-marr_output
+```{r Marr_output}
+library(Marr)
+Marr_output<- Marr(msprepCOPD, pSamplepairs =
+                   0.75, pFeatures = 0.75, alpha=0.05)
+Marr_output
 ## Head of reproducible sample pairs per metabolite (feature)
-head(marrFeatures(marr_output))
+head(MarrFeatures(Marr_output))
 ## Head of reproducible metabolites (features) per sample pair
-head(marrSamplepairs(marr_output))
+head(MarrSamplepairs(Marr_output))
 ## Percent of reproducible sample pairs per metabolite (feature)
 ##greater than 75%
-marrFeaturesfiltered(marr_output)
+MarrFeaturesfiltered(Marr_output)
 ## Percent of reproducible metabolites (features) per sample pair
 ## greater than 75%
-marrSamplepairsfiltered(marr_output)
+MarrSamplepairsfiltered(Marr_output)
 ```
 The distribution of reproducible metabolites/features (sample pairs) per sample
-pair (metabolite) can be extracted using the` marrSamplepairs()` 
-(`marrFeatures()`) function (see above). The distribution of reproducible
+pair (metabolite) can be extracted using the` MarrSamplepairs()` 
+(`MarrFeatures()`) function (see above). The distribution of reproducible
 metabolites/features  and sample pairs can plotted using the
-`marrPlotSamplepairs()` and `marrPlotFeatures()` functions, respectively (see
+`MarrPlotSamplepairs()` and `MarrPlotFeatures()` functions, respectively (see
 below).
 
-```{r fig.cap="Distribution of reproducible metabolites", plot-marr-Samplepairs}
-marrPlotSamplepairs(marr_output) 
+```{r fig.cap="Distribution of reproducible metabolites", plot-Marr-Samplepairs}
+MarrPlotSamplepairs(Marr_output) 
 ```
 
-```{r fig.cap="Distribution of reproducible sample pairs",plot-marr-Metabolites}
-marrPlotFeatures(marr_output) 
+```{r fig.cap="Distribution of reproducible sample pairs",plot-Marr-Metabolites}
+MarrPlotFeatures(Marr_output) 
 ```
 
 Figure 2 illustrates percentage of

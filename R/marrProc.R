@@ -1,16 +1,16 @@
-#' @title marrProc
+#' @title MarrProc
 #'
 #' @description This function is a helper function that
 #' computes distributions of reproducible sample pairs per feature
 #' and reproducible features per sample pair for the function
-#' \code{marr}.
-#'
+#' \code{Marr}.
+#' 
 #' @param object an object which is a \code{matrix} or
 #' \code{data.frame} with features (e.g. metabolites or genes) on
 #' the rows and samples as the columns. Alternatively,
 #' a user can provide a \code{SummarizedExperiment} object
 #' and the \code{assay(object)} will be used as input
-#' for the marr procedure.
+#' for the Marr procedure.
 #' @param alpha (Optional) level of significance to control
 #' the False Discovery Rate (FDR).
 #' Default is 0.05.
@@ -21,16 +21,16 @@
 #' \item{features}{the distribution of
 #' percent reproducible  sample pairs (row-wise) per feature}
 #'
-#' @aliases marrProc
+#' @aliases MarrProc
 #'
 #' @docType methods
 #' @examples
 #' data <- matrix(rnorm(2400), nrow=200, ncol=12)
-#' data_marrProc <- marrProc(object=data, alpha = 0.05)
+#' data_MarrProc <- MarrProc(object=data, alpha = 0.05)
 #'
-#' @rdname marrProc
+#' @rdname MarrProc
 #' @export
-marrProc <- function(object, alpha = 0.05) {
+MarrProc <- function(object, alpha = 0.05) {
         datranks <- array(0, dim = c(dim(object)[2], dim(object)[1]))
         for (i in seq_len(dim(object)[2])) {
                 datranks[i, ] <- rank(-(object[, c(i)]),
@@ -49,10 +49,10 @@ marrProc <- function(object, alpha = 0.05) {
         for (i in seq_len(dim(object)[2])) {
                 for (j in i:dim(object)[2]) {
                         if (i < j) {
-                                listMaRR <- .MaRR(datMaxRankij[i, j, ],
+                                listMarr <- .MaRR(datMaxRankij[i, j, ],
                                 alpha = 0.05)
-                                rall[i, j] <- length(listMaRR[[5]])
-                                mall_rep_i <- listMaRR[[5]]
+                                rall[i, j] <- length(listMarr[[5]])
+                                mall_rep_i <- listMarr[[5]]
                                 posall <- array(0, dim = c(dim(object)[1]))
                                 posall[mall_rep_i] <- rep(1, length(mall_rep_i))
                                 countall = countall + (posall == 1) * 1

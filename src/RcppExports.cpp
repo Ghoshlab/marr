@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // seqen
 NumericVector seqen(int n);
-RcppExport SEXP _marr_seqen(SEXP nSEXP) {
+RcppExport SEXP _Marr_seqen(SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // reptest2
 NumericVector reptest2(int x, int y);
-RcppExport SEXP _marr_reptest2(SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _Marr_reptest2(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -30,7 +30,7 @@ END_RCPP
 }
 // cumsumSS
 NumericVector cumsumSS(NumericVector x);
-RcppExport SEXP _marr_cumsumSS(SEXP xSEXP) {
+RcppExport SEXP _Marr_cumsumSS(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -41,7 +41,7 @@ END_RCPP
 }
 // subset_range1
 NumericVector subset_range1(NumericVector x, int start, int end);
-RcppExport SEXP _marr_subset_range1(SEXP xSEXP, SEXP startSEXP, SEXP endSEXP) {
+RcppExport SEXP _Marr_subset_range1(SEXP xSEXP, SEXP startSEXP, SEXP endSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -54,7 +54,7 @@ END_RCPP
 }
 // sapplySSS
 NumericVector sapplySSS(NumericVector xx);
-RcppExport SEXP _marr_sapplySSS(SEXP xxSEXP) {
+RcppExport SEXP _Marr_sapplySSS(SEXP xxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -65,7 +65,7 @@ END_RCPP
 }
 // getSS
 NumericVector getSS(NumericVector maxRank);
-RcppExport SEXP _marr_getSS(SEXP maxRankSEXP) {
+RcppExport SEXP _Marr_getSS(SEXP maxRankSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -76,7 +76,7 @@ END_RCPP
 }
 // seqenkhat
 NumericVector seqenkhat(int n, int k);
-RcppExport SEXP _marr_seqenkhat(SEXP nSEXP, SEXP kSEXP) {
+RcppExport SEXP _Marr_seqenkhat(SEXP nSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -88,7 +88,7 @@ END_RCPP
 }
 // sapplykhat
 NumericVector sapplykhat(int khat, NumericVector maxRank);
-RcppExport SEXP _marr_sapplykhat(SEXP khatSEXP, SEXP maxRankSEXP) {
+RcppExport SEXP _Marr_sapplykhat(SEXP khatSEXP, SEXP maxRankSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -100,7 +100,7 @@ END_RCPP
 }
 // RNhatcpp
 IntegerVector RNhatcpp(int khat, NumericVector maxRank);
-RcppExport SEXP _marr_RNhatcpp(SEXP khatSEXP, SEXP maxRankSEXP) {
+RcppExport SEXP _Marr_RNhatcpp(SEXP khatSEXP, SEXP maxRankSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -112,19 +112,19 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_marr_seqen", (DL_FUNC) &_marr_seqen, 1},
-    {"_marr_reptest2", (DL_FUNC) &_marr_reptest2, 2},
-    {"_marr_cumsumSS", (DL_FUNC) &_marr_cumsumSS, 1},
-    {"_marr_subset_range1", (DL_FUNC) &_marr_subset_range1, 3},
-    {"_marr_sapplySSS", (DL_FUNC) &_marr_sapplySSS, 1},
-    {"_marr_getSS", (DL_FUNC) &_marr_getSS, 1},
-    {"_marr_seqenkhat", (DL_FUNC) &_marr_seqenkhat, 2},
-    {"_marr_sapplykhat", (DL_FUNC) &_marr_sapplykhat, 2},
-    {"_marr_RNhatcpp", (DL_FUNC) &_marr_RNhatcpp, 2},
+    {"_Marr_seqen", (DL_FUNC) &_Marr_seqen, 1},
+    {"_Marr_reptest2", (DL_FUNC) &_Marr_reptest2, 2},
+    {"_Marr_cumsumSS", (DL_FUNC) &_Marr_cumsumSS, 1},
+    {"_Marr_subset_range1", (DL_FUNC) &_Marr_subset_range1, 3},
+    {"_Marr_sapplySSS", (DL_FUNC) &_Marr_sapplySSS, 1},
+    {"_Marr_getSS", (DL_FUNC) &_Marr_getSS, 1},
+    {"_Marr_seqenkhat", (DL_FUNC) &_Marr_seqenkhat, 2},
+    {"_Marr_sapplykhat", (DL_FUNC) &_Marr_sapplykhat, 2},
+    {"_Marr_RNhatcpp", (DL_FUNC) &_Marr_RNhatcpp, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_marr(DllInfo *dll) {
+RcppExport void R_init_Marr(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

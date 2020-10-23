@@ -1,4 +1,4 @@
-#' @useDynLib marr
+#' @useDynLib Marr
 #' @importFrom Rcpp evalCpp
 #' @exportPattern '^[[:alpha:]]+'
 NULL
@@ -8,7 +8,7 @@ NULL
 # and a khat.
 # INPUTS: maxRank = a vector of maximum rank statistics
 #         khat = a value of khat calculated from the argmin of
-# .mySS (Rcpp internal function in marrUtility.cpp)
+# .mySS (Rcpp internal function in MarrUtility.cpp)
 # OUTPUTS: a vector of estimated FDR values for each potential
 # threshold Nhat=1,...,n as described in Philtron et al., 2018
 
@@ -26,7 +26,7 @@ NULL
             return(c(rep(0, khat), FDRNhatkhat))
 }
 
-# .MaRR: an internal function that performs the marr procedure based
+# .MaRR: an internal function that performs the Marr procedure based
 #        on a vector of maximum rank statistics.
 # INPUTS: maxRank = a vector of maximum rank statistics
 #         cutoff = a value between 0 and 1 that provides
