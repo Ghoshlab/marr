@@ -1,4 +1,4 @@
-#' @useDynLib Marr
+#' @useDynLib marr
 #' @importFrom Rcpp evalCpp
 #' @exportPattern '^[[:alpha:]]+'
 NULL
