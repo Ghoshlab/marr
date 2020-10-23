@@ -44,5 +44,5 @@ Description: marr (Maximum Rank Reproducibility) is a
           identification of reproducible features and sample pairs
           based on output visualization checks (histograms). 
 biocViews: QualityControl, Metabolomics, MassSpectrometry, RNASeq, ChIPSeq
-BugReports: https://github.com/Ghoshlab/Marr/issues
+BugReports: https://github.com/Ghoshlab/marr/issues
 RoxygenNote: 7.1.1
