@@ -1,5 +1,5 @@
 ---
-title: "The Marr user's guide"
+title: "The marr user's guide"
 author:
 - name: Tusharkanti Ghosh
   affiliation: Colorado School of Public Health
@@ -18,15 +18,15 @@ output:
     toc: true
     toc_float: 
       collapsed: false
-package: Marr
-abstract: Marr (Maximum Rank Reproducibility) is a
+package: marr
+abstract: marr (Maximum Rank Reproducibility) is a
           nonparametric approach that detects
           reproducible signals using a maximal
           rank statistic for high-dimensional biological data.
 citation_package: natbib
 bibliography: Marr.bib
 vignette: |
-  %\VignetteIndexEntry{The Marr user's guide}
+  %\VignetteIndexEntry{The marr user's guide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 ---
@@ -81,16 +81,16 @@ assess how these biological and technical variables affect reproducibility
 across replicate experiments (@talloen2010filtering, 
 @arvidsson2008quantprime).
 
-In this vignette, we introduce the Marr procedure @Philtron2018, referred to as
-**maximum rank reproducibility** (**Marr**) to identify reproducible features in
+In this vignette, we introduce the marr procedure @Philtron2018, referred to as
+**maximum rank reproducibility** (**marr**) to identify reproducible features in
 high-throughput replicate experiments. In this vignette, we demonstrate with an 
-example data set that the (ma)ximum (r)ank (r)eproducibility (Marr) procedure
+example data set that the (ma)ximum (r)ank (r)eproducibility (marr) procedure
 can be adapted to high-throughput MS-Metabolomics experiments across
 (biological or technical) replicate samples
 (Ghosh et al, 2020, in preparation).
 
-The Marr procedure was originally proposed to assess reproducibility of gene
-ranks in replicate experiments. The `Marr` R-package contains the `Marr()`
+The marr procedure was originally proposed to assess reproducibility of gene
+ranks in replicate experiments. The `marr` R-package contains the `Marr()`
 function, which calculates  a matrix of signals ($\text{irreproducible}=0$,
 $\text{reproducible}=1$) with $M$ rows (total number of features) and $J$
 columns ($J={I \choose 2}$) (replicate sample pairs ${I \choose 2}$), where
@@ -115,12 +115,12 @@ knitr::include_graphics("Marr_schematic.png")
 
 Load the package in R
 ```{r load-lib, message=FALSE}
-library(Marr) 
+library(marr) 
 ```
 
 # msprepCOPD Data
 
-The **Marr** package contains a pre-processed data `SummarizedExperiment` assay 
+The **marr** package contains a pre-processed data `SummarizedExperiment` assay 
 object of 645 metabolites (features) measured in plasma and 20 biological
 replicates from the multi-center Genetic Epidemiology of COPD (COPDGene) study
 which was designed to study the underlying genetic factors of COPD,
@@ -129,7 +129,7 @@ vignette.
 
 ## msprepCOPD data pre-processing
 
-The **msprepCOPD** data  in the **Marr** package was pre-processed using the
+The **msprepCOPD** data  in the **marr** package was pre-processed using the
 MSPrep software (@Hughes2013). The data pre-processing include $3$ steps and
 they are as follows:
 1. `Filtering`: Metabolites are removed if they are missing more
@@ -173,7 +173,7 @@ To run the `Marr()` function, we only input the data object. We obtain 4 outputs
 after running the `Marr()` function. They are shown below:
 
 ```{r Marr_output}
-library(Marr)
+library(marr)
 Marr_output<- Marr(msprepCOPD, pSamplepairs =
                    0.75, pFeatures = 0.75, alpha=0.05)
 Marr_output
