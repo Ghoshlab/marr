@@ -88,7 +88,7 @@ Bug reports
 ===========
 
 Report bugs as issues on the [GitHub repository new
-issue](https://github.com/Ghoshlab/Marr/issues/new)
+issue](https://github.com/Ghoshlab/marr/issues/new)
 
 Contributors
 ============
