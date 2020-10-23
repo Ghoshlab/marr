@@ -1,0 +1,48 @@
+Package: Marr
+Type: Package
+Title: Maximum rank reproducibility
+Version: 0.99.3
+Date: 2020-10-23
+Authors@R:
+    c(person("Tusharkanti", "Ghosh",
+           email = "tusharkantighosh30@gmail.com",
+           role = c("aut", "cre")),
+    person("Max", "McGrath",
+           role = c("aut")),
+    person("Daisy", "Philtron",
+           role = c("aut")),
+    person("Katerina", "Kechris",
+           role = c("aut")),
+    person("Debashis", "Ghosh",
+           role = c("aut", "cph")))
+Imports: Rcpp, SummarizedExperiment, utils,
+     methods, ggplot2
+LinkingTo: Rcpp
+Depends: R (>= 4.0)
+Suggests: 
+    knitr,
+    rmarkdown,
+    BiocStyle,
+    testthat,
+    covr
+VignetteBuilder: knitr
+Encoding: UTF-8
+License: GPL (>= 3)
+Description: Marr (Maximum Rank Reproducibility) is a
+          nonparametric approach that detects
+          reproducible signals using a maximal
+          rank statistic for high-dimensional biological data. 
+          In this R package, we implement functions that 
+          measures the reproducibility of features per sample
+          pair and sample pairs per feature in high-dimensional
+          biological replicate experiments. The 
+          user-friendly plot functions in this package also plot 
+          histograms of the reproducibility of
+          features per sample pair and sample pairs per feature.
+          Furthermore, our approach also allows the users to select
+          optimal filtering threshold values for the
+          identification of reproducible features and sample pairs
+          based on output visualization checks (histograms). 
+biocViews: QualityControl, Metabolomics, MassSpectrometry, RNASeq, ChIPSeq
+BugReports: https://github.com/Ghoshlab/Marr/issues
+RoxygenNote: 7.1.1
