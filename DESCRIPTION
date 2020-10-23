@@ -1,4 +1,4 @@
-Package: Marr
+Package: marr
 Type: Package
 Title: Maximum rank reproducibility
 Version: 0.99.3
@@ -28,7 +28,7 @@ Suggests:
 VignetteBuilder: knitr
 Encoding: UTF-8
 License: GPL (>= 3)
-Description: Marr (Maximum Rank Reproducibility) is a
+Description: marr (Maximum Rank Reproducibility) is a
           nonparametric approach that detects
           reproducible signals using a maximal
           rank statistic for high-dimensional biological data. 
