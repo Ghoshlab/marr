@@ -5,7 +5,6 @@ language: R
 cache: packages
 r:
   - release
-  - bioc-devel
 warning_are_errors: true
 
 r_packages:
