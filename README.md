@@ -6,7 +6,7 @@ status](https://travis-ci.com/Ghoshlab/Marr.svg?branch=master)](https://travis-c
 marr
 ====
 
-### `marr`: An R package for Maximum Rank Reproducibility (marr) for high-dimensional biological data.
+### `marr`: An R/Bioconductor package for Maximum Rank Reproducibility (marr) for high-dimensional biological data.
 
 `marr` measures the reproducibility of features per sample pair and
 sample pairs per feature in high-dimensional biological replicate
