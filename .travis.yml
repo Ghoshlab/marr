@@ -4,7 +4,7 @@
 language: R
 cache: packages
 r:
-    - bioc-devel
+    - bioc-3.12
 warning_are_errors: true
 
 r_packages:
