@@ -44,7 +44,7 @@ It can also be installed using Bioconductor:
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 
-# install qsmooth package
+# install marr package
 BiocManager::install("marr")
 ```
 
