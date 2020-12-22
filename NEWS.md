@@ -1,3 +1,9 @@
+# marr 1.1.0
+
+
+* hard-coding of alpha fixed on December 21, 2020.
+
+
 # marr 0.99.4
 
 * code indentation updated.
