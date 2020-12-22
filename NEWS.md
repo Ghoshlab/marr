@@ -1,3 +1,8 @@
+# marr 1.2.0
+
+
+* version bump on December 21, 2020.
+
 # marr 1.1.0
 
 
