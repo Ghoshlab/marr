@@ -1,8 +1,8 @@
 Package: marr
 Type: Package
 Title: Maximum rank reproducibility
-Version: 1.1.1
-Date: 2020-12-21
+Version: 1.00.01
+Date: 2020-12-24
 Authors@R:
     c(person("Tusharkanti", "Ghosh",
            email = "tusharkantighosh30@gmail.com",
