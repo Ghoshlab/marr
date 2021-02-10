@@ -90,7 +90,7 @@ Marr <- function(object, pSamplepairs = 0.75, pFeatures = 0.75,
             if (any(is.na(object))) {
                         stop("Object must not contains NAs.")
             }
-            Marrutils <- MarrProc(object, alpha = 0.05)
+            Marrutils <- MarrProc(object, alpha)
             samplepairs <- Marrutils$samplepairs
             features <- Marrutils$features
             filSamplepairs <- (length(which(samplepairs > (pSamplepairs *
