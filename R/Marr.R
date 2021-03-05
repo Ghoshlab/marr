@@ -22,6 +22,8 @@
 #' @param alpha (Optional) level of significance to control
 #' the False Discovery Rate (FDR).
 #' Default is 0.05.
+#' @param featureVars (Optional) Vector of the columns which identify features.
+#' If a `SummarizedExperiment` is used for `data`, row variables will be used.
 #' @export
 #'
 #' @return A object of the class \code{Marr} that
@@ -57,6 +59,11 @@
 #' @name Marr
 #' @importFrom SummarizedExperiment assays
 #' @importFrom SummarizedExperiment assay
+#' @importFrom SummarizedExperiment colData
+#' @importFrom SummarizedExperiment rowData
+#' @importFrom dplyr select
+#' @importFrom utils combn
+#' @importFrom magrittr %>%
 #' @examples
 #' data <- matrix(rnorm(2400), nrow=200, ncol=12)
 #' data_Marr <- Marr(object = data, pSamplepairs=0.75,
@@ -75,21 +82,35 @@
 #' @rdname Marr
 #' @export
 Marr <- function(object, pSamplepairs = 0.75, pFeatures = 0.75,
-            alpha = 0.05) {
+            alpha = 0.05, featureVars = NULL) {
+    
             if (!any(is(object, "matrix") | is(object, "data.frame") |
                         is(object, "SummarizedExperiment"))) {
                         stop("The class of the object must be a matrix,
                         data.frame or SummarizedExperiment")
             }
             if (is.data.frame(object)) {
-                        object <- as.matrix(object)
+                if(!is.null(featureVars)) {
+                    featureColumns <- object %>%
+                        select(featureVars)
+                    object <- object %>%
+                        select(-featureVars) %>%
+                        as.matrix()
+                } else {
+                    object <- as.matrix(object)
+                    featureColumns <- NULL
+                }
+                samplePairNames <- combn(colnames(object), 2)
             }
             if (is(object, "SummarizedExperiment")) {
-                        object <- assay(object)
+                featureColumns <- rowData(object)
+                samplePairNames <- combn(rownames(colData(object)), 2)
+                object <- assay(object)
             }
             if (any(is.na(object))) {
-                        stop("Object must not contains NAs.")
+                stop("Object must not contains NAs.")
             }
+    
             Marrutils <- MarrProc(object, alpha)
             samplepairs <- Marrutils$samplepairs
             features <- Marrutils$features
@@ -97,10 +118,21 @@ Marr <- function(object, pSamplepairs = 0.75, pFeatures = 0.75,
                         100))) * 100)/choose(dim(object)[2], 2)
             filFeatures <- (length(which(features > (pFeatures *
                         100))) * 100)/dim(object)[1]
+            
             results <- new("Marr")
-            results@MarrSamplepairs <- samplepairs
-            results@MarrFeatures <- features
+            results@MarrSamplepairs <- data.frame(sampleOne = 
+                                                      samplePairNames[1, ],
+                                                  sampleTwo = 
+                                                      samplePairNames[2, ],
+                                                  reproducibility = samplepairs)
+            if(is.null(featureColumns)) {
+                results@MarrFeatures <- data.frame(reproducibility = features)
+            } else {
+                results@MarrFeatures <- data.frame(featureColumns, 
+                                                   reproducibility = features)
+            }
             results@MarrSamplepairsfiltered <- filSamplepairs
             results@MarrFeaturesfiltered <- filFeatures
+            
             return(results)
 }

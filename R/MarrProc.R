@@ -49,7 +49,7 @@ MarrProc <- function(object, alpha = 0.05) {
         for (i in seq_len(dim(object)[2])) {
                 for (j in i:dim(object)[2]) {
                         if (i < j) {
-                                listMarr <- .MaRR(datMaxRankij[i, j, ],
+                                listMarr <- .MaRR(datMaxRankij[i, j, ], .8,
                                 alpha)
                                 rall[i, j] <- length(listMarr[[5]])
                                 mall_rep_i <- listMarr[[5]]

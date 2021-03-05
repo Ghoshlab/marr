@@ -20,6 +20,7 @@
 #'
 #' @name Marr-class
 #' @import methods
+#' @importFrom dplyr mutate_if
 #' @exportClass Marr
 #' @aliases Marr-class
 #'
@@ -28,23 +29,28 @@
 #' data_Marr <- Marr(object = data, pSamplepairs=0.75,
 #'                   pFeatures=0.75, alpha=0.05)
 #'
-setClass(Class = "Marr", slot = list(MarrSamplepairs = "numeric",
-            MarrFeatures = "array", MarrSamplepairsfiltered = "numeric",
+setClass(Class = "Marr", slot = list(MarrSamplepairs = "data.frame",
+            MarrFeatures = "data.frame", MarrSamplepairsfiltered = "numeric",
             MarrFeaturesfiltered = "numeric"))
 #' @param Marr
 #'
 #' @importFrom utils head
 #' @importFrom utils tail
 setMethod("show", "Marr", function(object) {
-            cat("Marr: Maximum Rank reproducibility\n")
-            cat("   MarrSamplepairs (length =", length(object@MarrSamplepairs),
-                        "):", "\n")
-            cat(c(head(round(object@MarrSamplepairs, 3), n = 3),
-                        "...", tail(round(object@MarrSamplepairs, 3),
-                                    n = 3)), "\n")
-            cat("   MarrFeatures (length =", length(object@MarrFeatures),
-                        "):", "\n")
-            cat(c(head(round(object@MarrFeatures, 3), n = 3),
-                        "...", tail(round(object@MarrFeatures, 3),
-                                    n = 3)), "\n")
+    
+    samplePairs <- MarrSamplepairs(object) %>%
+        mutate_if(is.numeric, round, digits = 3)
+    features <- MarrFeatures(object) %>%
+        mutate_if(is.numeric, round, digits = 3)
+    
+    cat("Marr: Maximum Rank Reproducibility\n")
+    cat(c("MarrSamplepairs (length =", nrow(samplePairs), "):", "\n"))
+    print.data.frame(head(samplePairs, n = 3))
+    cat("...\n")
+    #print.data.frame(tail(samplePairs, n = 3))
+    #cat("\n")
+    cat(c("MarrFeatures (length =", nrow(features), "):", "\n"))
+    print.data.frame(head(features, n = 3))
+    #cat("...\n")
+    #print.data.frame(tail(features, n = 3))
 })
