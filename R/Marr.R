@@ -84,55 +84,72 @@
 Marr <- function(object, pSamplepairs = 0.75, pFeatures = 0.75,
             alpha = 0.05, featureVars = NULL) {
     
-            if (!any(is(object, "matrix") | is(object, "data.frame") |
-                        is(object, "SummarizedExperiment"))) {
-                        stop("The class of the object must be a matrix,
-                        data.frame or SummarizedExperiment")
-            }
-            if (is.data.frame(object)) {
-                if(!is.null(featureVars)) {
-                    featureColumns <- object %>%
-                        select(featureVars)
-                    object <- object %>%
-                        select(-featureVars) %>%
-                        as.matrix()
-                } else {
-                    object <- as.matrix(object)
-                    featureColumns <- NULL
-                }
-                samplePairNames <- combn(colnames(object), 2)
-            }
-            if (is(object, "SummarizedExperiment")) {
-                featureColumns <- rowData(object)
-                samplePairNames <- combn(rownames(colData(object)), 2)
-                object <- assay(object)
-            }
-            if (any(is.na(object))) {
-                stop("Object must not contains NAs.")
-            }
+    originalObject <- object
+
+    if (is.data.frame(object)) {
+        if(!is.null(featureVars)) {
+            featureColumns <- object %>%
+                select(featureVars)
+            object <- object %>%
+                select(-featureVars) %>%
+                as.matrix()
+        } else {
+            object <- as.matrix(object)
+            featureColumns <- NULL
+        }
+        samplePairNames <- combn(colnames(object), 2)
+    } else if (is(object, "SummarizedExperiment")) {
+        featureColumns <- rowData(object)
+        samplePairNames <- combn(rownames(colData(object)), 2)
+        object <- assay(object)
+    } else if (is(object, "matrix")) {
+        if (!is.null(featureVars)) {
+            featureColumns <- as.data.frame(object) %>%
+                select(featureVars)
+            object <- as.data.frame(object) %>%
+                select(-featureVars) %>%
+                as.matrix()
+        } else {
+            featureColumns <- NULL
+        }
+        originalObject <- as.data.frame(object)
+        samplePairNames <- combn(colnames(as.data.frame(object)), 2)
+    } else {
+        stop("The class of the object must be a matrix,
+                data.frame or SummarizedExperiment")
+    }
     
-            Marrutils <- MarrProc(object, alpha)
-            samplepairs <- Marrutils$samplepairs
-            features <- Marrutils$features
-            filSamplepairs <- (length(which(samplepairs > (pSamplepairs *
-                        100))) * 100)/choose(dim(object)[2], 2)
-            filFeatures <- (length(which(features > (pFeatures *
-                        100))) * 100)/dim(object)[1]
-            
-            results <- new("Marr")
-            results@MarrSamplepairs <- data.frame(sampleOne = 
-                                                      samplePairNames[1, ],
-                                                  sampleTwo = 
-                                                      samplePairNames[2, ],
-                                                  reproducibility = samplepairs)
-            if(is.null(featureColumns)) {
-                results@MarrFeatures <- data.frame(reproducibility = features)
-            } else {
-                results@MarrFeatures <- data.frame(featureColumns, 
-                                                   reproducibility = features)
-            }
-            results@MarrSamplepairsfiltered <- filSamplepairs
-            results@MarrFeaturesfiltered <- filFeatures
-            
-            return(results)
+    if (any(is.na(object))) {
+        stop("Object must not contains NAs.")
+    }
+
+    Marrutils <- MarrProc(object, alpha)
+    samplepairs <- Marrutils$samplepairs
+    features <- Marrutils$features
+    filSamplepairs <- (length(which(samplepairs > (pSamplepairs *
+                100))) * 100)/choose(dim(object)[2], 2)
+    filFeatures <- (length(which(features > (pFeatures *
+                100))) * 100)/dim(object)[1]
+    
+    results <- new("Marr")
+    results@MarrSamplepairs <- data.frame(sampleOne = 
+                                              samplePairNames[1, ],
+                                          sampleTwo = 
+                                              samplePairNames[2, ],
+                                          reproducibility = samplepairs)
+    if(is.null(featureColumns)) {
+        results@MarrFeatures <- data.frame(reproducibility = features)
+    } else {
+        results@MarrFeatures <- data.frame(featureColumns, 
+                                           reproducibility = features)
+    }
+    results@MarrSamplepairsfiltered <- filSamplepairs
+    results@MarrFeaturesfiltered <- filFeatures
+    results@MarrData <- originalObject
+    results@MarrPFeatures <- pFeatures
+    results@MarrPSamplepairs <- pSamplepairs
+    results@MarrAlpha <- alpha
+    results@MarrFeatureVars <- featureVars
+    
+    return(results)
 }
