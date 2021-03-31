@@ -28,7 +28,7 @@
 MarrPlotSamplepairs <- function(  object,
         xLab = "Percent reproducible features per sample pair",
         yLab = "Sample pair") {
-        w = object@MarrSamplepairs
+        w = object@MarrSamplepairs$reproducibility
         df11 = data.frame(w)
         ggplot(df11, aes(x = w))+
         geom_histogram(binwidth=2,color = "black",
@@ -64,7 +64,7 @@ MarrPlotSamplepairs <- function(  object,
 MarrPlotFeatures <- function(  object,
         xLab = "Percent reproducible sample pairs per feature",
         yLab = "Feature") {
-        ww = object@MarrFeatures
+        ww = object@MarrFeatures$reproducibility
         df12 = data.frame(ww)
         ggplot(df12, aes(x = ww))+
         geom_histogram(binwidth=2,color = "black",

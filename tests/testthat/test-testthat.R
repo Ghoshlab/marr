@@ -11,9 +11,9 @@ test_that("checking dimensions of Marr object", {
         n_features, n_samples)
         Marr_test <- Marr(object = data_test)
 
-        expect_equal(length(MarrSamplepairs(Marr_test)),
+        expect_equal(nrow(MarrSamplepairs(Marr_test)),
         choose(n_samples,2))
-        expect_equal(length(MarrFeatures(Marr_test)), n_features)
+        expect_equal(nrow(MarrFeatures(Marr_test)), n_features)
 })
 
 test_that("checking Marr data", {
@@ -24,8 +24,9 @@ test_that("checking Marr data", {
         n_features, n_samples)
         Marr_test <- Marr(object = data_test)
 
-        expect_equal(MarrSamplepairs(Marr_test)[184], 0.08333333,
-        tolerance = 1e-06)
-        expect_equal(MarrFeatures(Marr_test)[879], 0.5263158,
+        expect_equal(MarrSamplepairs(Marr_test)$reproducibility[184], 
+                     0.08333333,
+                     tolerance = 1e-06)
+        expect_equal(MarrFeatures(Marr_test)$reproducibility[879], 0.5263158,
         tolerance = 1e-06)
 })

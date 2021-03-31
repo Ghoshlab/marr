@@ -5,7 +5,13 @@
 \alias{Marr}
 \title{Marr}
 \usage{
-Marr(object, pSamplepairs = 0.75, pFeatures = 0.75, alpha = 0.05)
+Marr(
+  object,
+  pSamplepairs = 0.75,
+  pFeatures = 0.75,
+  alpha = 0.05,
+  featureVars = NULL
+)
 }
 \arguments{
 \item{object}{an object which is a \code{matrix} or
@@ -28,6 +34,9 @@ Default is 0.75.}
 \item{alpha}{(Optional) level of significance to control
 the False Discovery Rate (FDR).
 Default is 0.05.}
+
+\item{featureVars}{(Optional) Vector of the columns which identify features.
+If a `SummarizedExperiment` is used for `data`, row variables will be used.}
 }
 \value{
 A object of the class \code{Marr} that

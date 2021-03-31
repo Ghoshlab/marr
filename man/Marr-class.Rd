@@ -29,6 +29,18 @@ Marr object
 \item{\code{MarrSamplepairsfiltered}}{Marr sample pairs post filtering}
 
 \item{\code{MarrFeaturesfiltered}}{Marr metabolites post filtering}
+
+\item{\code{MarrData}}{Original data object passed to \code{Marr}}
+
+\item{\code{MarrPSamplepairs}}{Value of \code{pSamplepairs} argument passed 
+to \code{Marr}}
+
+\item{\code{MarrPFeatures}}{Value of \code{pFeatures} argument passed to \code{Marr}}
+
+\item{\code{MarrAlpha}}{Value of \code{alpha} argument passed to \code{Marr}}
+
+\item{\code{MarrFeatureVars}}{Value of \code{featureVars} passed to \code{Marr}. NULL
+if \code{featureVars} was left blank}
 }}
 
 \examples{
