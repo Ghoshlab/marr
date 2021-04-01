@@ -5,6 +5,6 @@
 \alias{vectorORNull}
 \title{S4 Class union}
 \description{
-Class union allowing \code{MarrFeatureVars} slot to be a vector or 
-NULL
+Class union allowing \code{MarrFeatureVars} slot to be a vector
+or NULL
 }

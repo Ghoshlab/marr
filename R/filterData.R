@@ -47,10 +47,9 @@ MarrFilterData <- function(object, by = c("both", "features", "samplePairs")) {
 .dfFilter <- function(object, by) {
     if (by == "both" | by == "features") {
         pFeatures <- object@MarrPFeatures
-        featuresToKeep <- 
-            which(object@MarrFeatures$reproducibility > pFeatures*100)
+        featuresToKeep <- object@MarrFeatures$reproducibility > pFeatures*100
     } else {
-        featuresToKeep <- seq(to = nrow(object@MarrData))
+        featuresToKeep <- rep(TRUE, times = nrow(object@MarrData))
     }
     
     if (by == "both" | by == "samplePairs") {
@@ -64,38 +63,44 @@ MarrFilterData <- function(object, by = c("both", "features", "samplePairs")) {
             filter(.data$reproducibility > pSamplePairs*100) %>%
             select(!.data$reproducibility)
         
-        if (is.null(featureVars)) {
-            featureVarIndex <- NULL
-        } else {
-            featureVarIndex <- which(originalSamples %in% featureVars)
-        }
+        samplesToKeep <- c(originalSamples %in% samplePairs$sampleOne |
+                               originalSamples %in% samplePairs$sampleTwo |
+                               originalSamples %in% featureVars)
         
-        samplesToKeep <- 
-            c(featureVarIndex,
-              which(originalSamples %in% samplePairs$sampleOne |
-                        originalSamples %in% samplePairs$sampleTwo))
     } else {
-        samplesToKeep <- seq(to = ncol(object@MarrData))
+        samplesToKeep <- rep(TRUE, times = ncol(object@MarrData))
     }
     
-    return <- object@MarrData[featuresToKeep, samplesToKeep]
+    filteredData <- object@MarrData[featuresToKeep, samplesToKeep]
+    removedSamples <- object@MarrData[, !samplesToKeep]
+    removedFeatures <- object@MarrData[!featuresToKeep, ]
+    
+    if(ncol(removedSamples) == 0) { removedSamples <- NULL }
+    if(nrow(removedFeatures) == 0) { removedFeatures <- NULL }
+    
+    return(list("filteredData" = filteredData,
+                "removedSamples" = removedSamples,
+                "removedFeatures" = removedFeatures))
 }
 
 #' @importFrom dplyr filter
 #' @importFrom dplyr select
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @importFrom S4Vectors metadata
+#' @importFrom S4Vectors metadata<-
 .seFilter <- function(object, by) {
     if (by == "both" | by == "features") {
         pFeatures <- object@MarrPFeatures
-        featuresToKeep <- 
-            which(object@MarrFeatures$reproducibility > pFeatures*100)
+        featuresToKeep <- object@MarrFeatures$reproducibility > pFeatures*100
     } else {
-        featuresToKeep <- seq(to = nrow(object@MarrData))
+        featuresToKeep <- rep(TRUE, times = nrow(object@MarrData))
     }
     
     if (by == "both" | by == "samplePairs") {
         pSamplePairs <- object@MarrPSamplepairs
+        featureVars <- object@MarrFeatureVars
+        
         originalSamples <- object@MarrData %>%
             colnames()
         
@@ -103,11 +108,24 @@ MarrFilterData <- function(object, by = c("both", "features", "samplePairs")) {
             filter(.data$reproducibility > pSamplePairs*100) %>%
             select(!.data$reproducibility)
         
-        samplesToKeep <- which(originalSamples %in% samplePairs$sampleOne |
-                                   originalSamples %in% samplePairs$sampleTwo)
+        samplesToKeep <- c(originalSamples %in% samplePairs$sampleOne |
+                               originalSamples %in% samplePairs$sampleTwo |
+                               originalSamples %in% featureVars)
+        
     } else {
-        samplesToKeep <- seq(to = ncol(object@MarrData))
+        samplesToKeep <- rep(TRUE, times = ncol(object@MarrData))
     }
     
+    filteredData <- object@MarrData[featuresToKeep, samplesToKeep]
+    removedSamples <- object@MarrData[, !samplesToKeep]
+    removedFeatures <- object@MarrData[!featuresToKeep, ]
+    
+    if(ncol(removedSamples) == 0) { removedSamples <- NULL }
+    if(nrow(removedFeatures) == 0) { removedFeatures <- NULL }
+    
     return <- object@MarrData[featuresToKeep, samplesToKeep]
+    metadata(return)$removedSamples <- removedSamples
+    metadata(return)$removedFeatures <- removedFeatures
+        
+    return
 }
