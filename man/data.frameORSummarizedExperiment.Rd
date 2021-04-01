@@ -5,6 +5,6 @@
 \alias{data.frameORSummarizedExperiment}
 \title{S4 Class union}
 \description{
-Class union allowing \code{MarrData} slot to be a data.frame or 
+Class union allowing \code{MarrData} slot to be a data.frame or
 Summarized Experiment
 }
