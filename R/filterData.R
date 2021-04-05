@@ -52,12 +52,12 @@ MarrFilterData <- function(object, by = c("both", "features", "samplePairs")) {
         featuresToKeep <- rep(TRUE, times = nrow(object@MarrData))
     }
     
+    originalSamples <- object@MarrData %>%
+        colnames()
+    featureVars <- object@MarrFeatureVars
+    
     if (by == "both" | by == "samplePairs") {
         pSamplePairs <- object@MarrPSamplepairs
-        featureVars <- object@MarrFeatureVars
-        
-        originalSamples <- object@MarrData %>%
-            colnames()
         
         samplePairs <- object@MarrSamplepairs %>%
             filter(.data$reproducibility > pSamplePairs*100) %>%
@@ -72,10 +72,14 @@ MarrFilterData <- function(object, by = c("both", "features", "samplePairs")) {
     }
     
     filteredData <- object@MarrData[featuresToKeep, samplesToKeep]
-    removedSamples <- object@MarrData[, !samplesToKeep]
+    removedSamples <- object@MarrData[, (!samplesToKeep | 
+                                             originalSamples %in% featureVars)]
     removedFeatures <- object@MarrData[!featuresToKeep, ]
     
-    if(ncol(removedSamples) == 0) { removedSamples <- NULL }
+    if(ncol(filteredData) == length(featureVars) | nrow(filteredData) == 0) { 
+        filteredData <- NULL 
+    }
+    if(ncol(removedSamples) == length(featureVars)) { removedSamples <- NULL }
     if(nrow(removedFeatures) == 0) { removedFeatures <- NULL }
     
     return(list("filteredData" = filteredData,
@@ -120,6 +124,9 @@ MarrFilterData <- function(object, by = c("both", "features", "samplePairs")) {
     removedSamples <- object@MarrData[, !samplesToKeep]
     removedFeatures <- object@MarrData[!featuresToKeep, ]
     
+    if(ncol(filteredData) == 0 | nrow(filteredData) == 0) { 
+        filteredData <- NULL 
+    }
     if(ncol(removedSamples) == 0) { removedSamples <- NULL }
     if(nrow(removedFeatures) == 0) { removedFeatures <- NULL }
     
