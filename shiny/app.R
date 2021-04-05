@@ -7,6 +7,7 @@ library(DT)
 library(ggplot2)
 library(dplyr)
 library(rlang)
+library(markdown)
 
 # Prepare example data using MSPrep
 data(msquant)
@@ -49,68 +50,12 @@ colnames(msprepDataNoFeats) <- paste0("X", colnames(msprepDataNoFeats))
 ui <- navbarPage("MaRR - Maximum Rank Reproducibility",
     # Introduction Tab UI ------------------------------------------------------
     tabPanel("Introduction",
+             withMathJax(),
              column(1),
-             column(10, 
-                    withMathJax(),
-            # tags$div(HTML("<script type='text/x-mathjax-config' >
-            # MathJax.Hub.Config({
-            # tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-            # });
-            # </script >
-            # ")),
-                    h4("Introduction"),
-                    HTML("<p>This app provides a user interface for the open-source R package marr.
-                         <b>Maximum rank reproducbility (MaRR)</b> is a nonparametric approach that detects reproducible signals using a maximal rank statistic for high-dimensional biological data.</p>"),
-                    p("Instructions for using the app are provided as tooltips in 
-                      the 'Example' tab. An interface to use the software with
-                      uploaded data is provided in the 'Analysis' tab. For more
-                      information about the MaRR method and marr software, see 
-                      below."),
-                    h4("About MaRR"),
-                    p("Reproducibility is an on-going challenge with high-throughput
-                    technologies that have been developed in the last two decades for
-                    quantifying a wide range of biological processes. One of the main 
-                    difficulties faced by researchers is the variability of output across 
-                    replicate experiments (Li et al. (2011)). In each high-throughput experiment (e.g., arrays,
-                    sequencing, mass spectrometry), a large number of features are 
-                    measured simultaneously, and candidates are often subjected for 
-                    follow-up statistical analysis. We use the term features to refer to 
-                    biological features (e.g., metabolites, genes) resulting from a 
-                    high-throughput experiment throughout this app. When 
-                    measurements show consistency across replicate experiments, we define 
-                    that measurement to be reproducible. Similarly, measurements that are 
-                    not consistent across replicates may be problematic and should be 
-                    identified. In this app, features that show consistency across 
-                    high-dimensional replicate experiments are termed reproducible and the
-                    ones that are not consistent are termed irreproducible. The 
-                    reproducibility of a high-throughput experiment primarily depends on 
-                    the technical variables, such as run time, technical replicates, 
-                    laboratory operators and biological variables, such as healthy and 
-                    diseased subjects. A critical step toward making optimal design 
-                    choices is to assess how these biological and technical variables 
-                    affect reproducibility across replicate experiments (Talloen et al. 
-                      (2010), Arvidsson et al. (2008))."),
-                    HTML("<p>In this app, we implement the procedure Philtron et al. (2018), referred to as maximum rank reproducibility (MaRR) to identify reproducible features in high-throughput replicate experiments. 
-                         The marr procedure was originally proposed to assess reproducibility of gene ranks in replicate experiments.
-                         This app implements the marr package (links below), which
-                         calculates a matrix of signals with M rows (total number of features) and J = nCr(I, 2) columns, where I is the number of samples and J is the total number of sample pairs.
-                         We assign feature m to be reproducible if a certain percentage of signals are reproducible for pairwise combinations of replicate experiments, i.e., if</p>"),
-                    p("$$ \\frac{{\\sum_{i<i'}{{{r_{m,{(i,i')}}}}}}}{J} >c_s, c_s \\in (0,1).$$"),
-                    HTML("<p>Similarly, we assign a sample pair (i, i') to be reproducible if a certain percentage signals are reproducible across all features, i.e., if</p>"),
-                    p("$$\\frac{\\sum_{m}{{r{_{m,(i,i')}}}}}{M}>c_m, c_m \\in (0,1)$$"),
-                    HTML("<p>The reproducible signal matrix is shown below.</p>"),
-                    img(src='Marr_schematic.png', style="display: block; margin-left: auto; margin-right: auto; max-width: 747px; width: 100%; max-height: 421px; height: 100%;"),
-                    h4("Further Information"),
-                    HTML("<p>Link to MaRR paper (coming soon)</p>"),
-                    HTML("<p><a href='https://bioconductor.org/packages/release/bioc/html/marr.html'>Link to Bioconductor</a></p>"),
-                    HTML("<p><a href='https://github.com/Ghoshlab/marr'>Link to Github</a></p>")
-                    ),
-             column(1)
-    
-    ),
+             column(10, includeMarkdown("www/introduction.md")),
+             column(1)),
     
     # Example Tab UI -----------------------------------------------------------
-    
     tabPanel("Example",
              column(1),
              sidebarLayout(
@@ -131,7 +76,8 @@ ui <- navbarPage("MaRR - Maximum Rank Reproducibility",
                                       "ns using the Feature Identifying Colum",
                                       "ns selection tool before clicking Run Analysis")),
                      actionButton("exampleRunAnalysis", "Run Analysis", 
-                                  width = "100%"),
+                                  width = "100%", 
+                                  style="color: #228B22; border-color: #228B22; font-weight: bold;"),
                      bsTooltip("exampleRunAnalysis",
                                paste0("Once all the MaRR Options and Data Options have been set according to your needs, click Run Analysis to apply MaRR to your data set.")),
                      tags$hr(),
@@ -225,12 +171,16 @@ ui <- navbarPage("MaRR - Maximum Rank Reproducibility",
                                   h1(),
                                   disabled(downloadButton("exampleDownloadFilteredBySP",
                                                  paste0("Download data filtered by only Sample Pairs"))),
+                                  disabled(downloadButton("exampleDownloadRemovedS",
+                                                          paste0("Download removed samples"))),
                                   tags$hr(),
                                   h4("Filtered by only Features"),
                                   DT::dataTableOutput("exampleFilteredByF"),
                                   h1(),
                                   disabled(downloadButton("exampleDownloadFilteredByF",
                                                  paste0("Download data filtered by only Features"))),
+                                  disabled(downloadButton("exampleDownloadRemovedF",
+                                                          paste0("Download removed features"))),
                                   tags$hr())
                      ),
                      width = 7
@@ -251,7 +201,8 @@ ui <- navbarPage("MaRR - Maximum Rank Reproducibility",
                                      "text/comma-separated-values,text/plain",
                                      ".csv")),
                 tags$hr(),
-                actionButton("runAnalysis", "Run Analysis", width = "100%"),
+                actionButton("runAnalysis", "Run Analysis", width = "100%", 
+                             style="color: #228B22; border-color: #228B22; font-weight: bold;"),
                 tags$hr(),
                 h4("MaRR Options"),
                 sliderInput("pSamplepairs", "P Sample Pairs",
@@ -315,18 +266,30 @@ ui <- navbarPage("MaRR - Maximum Rank Reproducibility",
                             h1(),
                             disabled(downloadButton("downloadFilteredBySP",
                                            paste0("Download data filtered by only Sample Pairs"))),
+                            disabled(downloadButton("downloadRemovedS",
+                                                    paste0("Download removed samples"))),
                             tags$hr(),
                             h4("Filtered by only Features"),
                             DT::dataTableOutput("filteredByF"),
                             h1(),
                             disabled(downloadButton("downloadFilteredByF",
                                   paste0("Download data filtered by only Features"))),
+                            disabled(downloadButton("downloadRemovedF",
+                                                    paste0("Download removed features"))),
                             tags$hr())
                ),
                width = 7
             )
         ),
         column(1)
+    ),
+    
+    # Further Information Tab UI -----------------------------------------------
+    tabPanel("Further Information",
+             column(1),
+             column(10,
+                    includeMarkdown("www/furtherInfo.md")),
+             column(1)
     )
 )
 
@@ -344,17 +307,65 @@ server <- function(input, output, session) {
         }
     })
     
-    # Disables download of filtered files until analysis is run
+    # Disables download of filtered files until analysis is run and tables are
+    #   not NULL
     observeEvent(input$runAnalysis, {
-        shinyjs::enable("downloadFilteredByBoth")
-        shinyjs::enable("downloadFilteredBySP")
-        shinyjs::enable("downloadFilteredByF")
+        if (!is.null(dataFilteredByBoth()$filteredData)) {
+            shinyjs::enable("downloadFilteredByBoth")
+        } else {
+            shinyjs::disable("downloadFilteredByBoth")
+        }
+        if (!is.null(dataFilteredBySP()$filteredData)) {
+            shinyjs::enable("downloadFilteredBySP")
+        } else {
+            shinyjs::disable("downloadFilteredBySP")
+        }
+        if (!is.null(dataFilteredByF()$filteredData)) {
+            shinyjs::enable("downloadFilteredByF")
+        } else {
+            shinyjs::disable("downloadFilteredByF")
+        }
+        
+        if (!is.null(dataFilteredBySP()$removedSamples)) {
+            shinyjs::enable("downloadRemovedS")
+        } else {
+            shinyjs::disable("downloadRemovedS")
+        }
+        if (!is.null(dataFilteredByF()$removedFeatures)) {
+            shinyjs::enable("downloadRemovedF")
+        } else {
+            shinyjs::disable("downloadRemovedF")
+        }
     })
     
     observeEvent(input$exampleRunAnalysis, {
-        shinyjs::enable("exampleDownloadFilteredByBoth")
-        shinyjs::enable("exampleDownloadFilteredBySP")
-        shinyjs::enable("exampleDownloadFilteredByF")
+        
+        if (!is.null(exampleDataFilteredByBoth()$filteredData)) {
+            shinyjs::enable("exampleDownloadFilteredByBoth")
+        } else {
+            shinyjs::disable("exampleDownloadFilteredByBoth")
+        }
+        if (!is.null(exampleDataFilteredBySP()$filteredData)) {
+            shinyjs::enable("exampleDownloadFilteredBySP")
+        } else {
+            shinyjs::disable("exampleDownloadFilteredBySP")
+        }
+        if (!is.null(exampleDataFilteredByF()$filteredData)) {
+            shinyjs::enable("exampleDownloadFilteredByF")
+        } else {
+            shinyjs::disable("exampleDownloadFilteredByF")
+        }
+        
+        if (!is.null(exampleDataFilteredBySP()$removedSamples)) {
+            shinyjs::enable("exampleDownloadRemovedS")
+        } else {
+            shinyjs::disable("exampleDownloadRemovedS")
+        }
+        if (!is.null(exampleDataFilteredByF()$removedFeatures)) {
+            shinyjs::enable("exampleDownloadRemovedF")
+        } else {
+            shinyjs::disable("exampleDownloadRemovedF")
+        }
     })
     
     validateMarrOutput <- function() {
@@ -605,167 +616,144 @@ server <- function(input, output, session) {
     # Render filtered data tables ----------------------------------------------
     dataFilteredByBoth <- reactive({
         filteredData <- marrOutput() %>%
-            MarrFilterData(by = "both") %>%
-            mutate_if(is.numeric, round, digits = 2)
+            MarrFilterData(by = "both")
     })
     
     output$filteredByBoth <- DT::renderDataTable({
         validateMarrOutput()
-        DT::datatable(dataFilteredByBoth(),
-                      #extensions = "Buttons",
+        
+        validate(need(!is.null(dataFilteredByBoth()$filteredData),
+                      "All data removed"))
+        
+        DT::datatable(dataFilteredByBoth()$filteredData %>% 
+                          mutate_if(is.numeric, round, digits = 2),
                       options = list(scrollX = TRUE,
                                      pageLength = 3,
                                      searching = FALSE),
-                                     #dom = "ti<>B",
-                                     #buttons = c("csv", "excel")),
-                      rownames = FALSE)},
-        server = FALSE,
-    )
+                      rownames = FALSE)
+    })
     
     exampleDataFilteredByBoth <- reactive({
         filteredData <- exampleMarrOutput() %>%
-            MarrFilterData(by = "both") %>%
-            mutate_if(is.numeric, round, digits = 2)
+            MarrFilterData(by = "both")
     })
     
     output$exampleFilteredByBoth <- DT::renderDataTable({
         exampleValidateMarrOutput()
-        DT::datatable(exampleDataFilteredByBoth(),
-                      #extensions = "Buttons",
+        
+        validate(need(!is.null(exampleDataFilteredByBoth()$filteredData),
+                      "All data removed"))
+        
+        DT::datatable(exampleDataFilteredByBoth()$filteredData %>% 
+                          mutate_if(is.numeric, round, digits = 2),
                       options = list(scrollX = TRUE,
                                      pageLength = 3,
                                      searching = FALSE),
-                      #dom = "ti<>B",
-                      #buttons = c("csv", "excel")),
-                      rownames = FALSE)},
-        server = FALSE,
-    )
+                      rownames = FALSE)
+    })
     
     # Data filtered by only sample pairs
     dataFilteredBySP <- reactive({
         filteredData <- marrOutput() %>%
-            MarrFilterData(by = "samplePairs") %>%
-            mutate_if(is.numeric, round, digits = 2)
+            MarrFilterData(by = "samplePairs")
     })
     
     output$filteredBySP <- DT::renderDataTable({
         validateMarrOutput()
-        DT::datatable(dataFilteredBySP(), options = list(scrollX = TRUE,
-                                                         pageLength = 3,
-                                                         searching = FALSE),
+        
+        validate(need(!is.null(dataFilteredBySP()$filteredData),
+                      "All samples removed"))
+        
+        DT::datatable(dataFilteredBySP()$filteredData %>% 
+                          mutate_if(is.numeric, round, digits = 2), 
+                      options = list(scrollX = TRUE,
+                                     pageLength = 3,
+                                     searching = FALSE),
                       rownames = FALSE)
     })
     
     exampleDataFilteredBySP <- reactive({
         filteredData <- exampleMarrOutput() %>%
-            MarrFilterData(by = "samplePairs") %>%
-            mutate_if(is.numeric, round, digits = 2)
+            MarrFilterData(by = "samplePairs")
     })
     
     output$exampleFilteredBySP <- DT::renderDataTable({
         exampleValidateMarrOutput()
-        DT::datatable(exampleDataFilteredBySP(), options = list(scrollX = TRUE,
-                                                         pageLength = 3,
-                                                         searching = FALSE),
+        
+        validate(need(!is.null(exampleDataFilteredBySP()$filteredData),
+                      "All samples removed"))
+        
+        DT::datatable(exampleDataFilteredBySP()$filteredData %>% 
+                          mutate_if(is.numeric, round, digits = 2), 
+                      options = list(scrollX = TRUE,
+                                     pageLength = 3,
+                                     searching = FALSE),
                       rownames = FALSE)
     })
     
     # Data filtered by only features
     dataFilteredByF <- reactive({
         filteredData <- marrOutput() %>%
-            MarrFilterData(by = "feature") %>%
-            mutate_if(is.numeric, round, digits = 2)
+            MarrFilterData(by = "feature")
     })
     
     output$filteredByF <- DT::renderDataTable({
         validateMarrOutput()
-        DT::datatable(dataFilteredByF(), options = list(scrollX = TRUE,
-                                                        pageLength = 3,
-                                                        searching = FALSE),
+        
+        validate(need(!is.null(dataFilteredByF()$filteredData),
+                      "All features removed"))
+        
+        DT::datatable(dataFilteredByF()$filteredData %>% 
+                          mutate_if(is.numeric, round, digits = 2), 
+                      options = list(scrollX = TRUE,
+                                     pageLength = 3,
+                                     searching = FALSE),
                       rownames = FALSE)
     })
     
     exampleDataFilteredByF <- reactive({
         filteredData <- exampleMarrOutput() %>%
-            MarrFilterData(by = "feature") %>%
-            mutate_if(is.numeric, round, digits = 2)
+            MarrFilterData(by = "feature")
     })
     
     output$exampleFilteredByF <- DT::renderDataTable({
         exampleValidateMarrOutput()
-        DT::datatable(exampleDataFilteredByF(), options = list(scrollX = TRUE,
-                                                        pageLength = 3,
-                                                        searching = FALSE),
+        
+        validate(need(!is.null(exampleDataFilteredByF()$filteredData),
+                      "All features removed"))
+        
+        DT::datatable(exampleDataFilteredByF()$filteredData %>% 
+                          mutate_if(is.numeric, round, digits = 2), 
+                      options = list(scrollX = TRUE,
+                                     pageLength = 3,
+                                     searching = FALSE),
                       rownames = FALSE)
     })
     
     # Example table tooltips
-    addTooltip(session, "exampleInData", #"Uploaded Data",
+    addTooltip(session, "exampleInData",
                title = paste0("Here your uploaded data will be displayed for you to examine prior to analyzing it with MaRR. Note that samples selected with Exclude Samples will disappear from this table, but those selected with Feature Identifying Columns will remain."),
                placement = "bottom")
     
-    addTooltip(session, "exampleSamplePairs", #"Uploaded Data",
+    addTooltip(session, "exampleSamplePairs",
                title = paste0("Here, each sample pair's reproducibility is given. For each sample pair, its reproducibility is determined as the percentage of features per sample pair which are reproducible according to the MaRR procedure based on the chosen Alpha."),
                placement = "top")
     
-    addTooltip(session, "exampleFeatures", #"Uploaded Data",
+    addTooltip(session, "exampleFeatures",
                title = paste0("Here, each features's reproducibility is given. For each feature, its reproducibility is determined as the percentage of sample pairs per feature which are reproducible according to the MaRR procedure based on the chosen Alpha."),
                placement = "top")
     
-    addTooltip(session, "exampleFilteredByBoth", #"Uploaded Data",
+    addTooltip(session, "exampleFilteredByBoth",
                title = paste0("This table displays data after both its samples and features have been filtered according to the MaRR procedure. For further explanation on when a feature or sample pair is filtered, see the tooltips below. You may download this table with the button directly below it."),
                placement = "bottom")
     
-    addTooltip(session, "exampleFilteredBySP", #"Uploaded Data",
+    addTooltip(session, "exampleFilteredBySP",
                title = paste0("This table displays data after its samples have been filtered. A sample is removed if its reproducibility is below P Sample Pairs for ALL sample pairs in which it is a member. In other words, a sample that's reproducibility is above the threshold P Sample Pairs when paired with any other sample will not be removed. You may download this table with the button directly below it."),
                placement = "top")
     
-    addTooltip(session, "exampleFilteredByF", #"Uploaded Data",
+    addTooltip(session, "exampleFilteredByF",
                title = paste0("This table displays data after its features have been filtered. A feature is removed if its reproducibility is below P Features. You may download this table with the button directly below it."),
                placement = "top")
-    
-    # Download Button Helpers --------------------------------------------------
-    output$downloadFilteredByBoth <- downloadHandler(
-        filename = "filteredData.csv",
-        content = function(file) {
-            write.csv(dataFilteredByBoth(), file, row.names = FALSE)
-        }
-    )
-    
-    output$downloadFilteredBySP <- downloadHandler(
-        filename = "filteredData.csv",
-        content = function(file) {
-            write.csv(dataFilteredBySP(), file, row.names = FALSE)
-        }
-    )
-    
-    output$downloadFilteredByF <- downloadHandler(
-        filename = "filteredData.csv",
-        content = function(file) {
-            write.csv(dataFilteredByF(), file, row.names = FALSE)
-        }
-    )
-    
-    output$exampleDownloadFilteredByBoth <- downloadHandler(
-        filename = "filteredData.csv",
-        content = function(file) {
-            write.csv(exampleDataFilteredByBoth(), file, row.names = FALSE)
-        }
-    )
-    
-    output$exampleDownloadFilteredBySP <- downloadHandler(
-        filename = "filteredData.csv",
-        content = function(file) {
-            write.csv(exampleDataFilteredBySP(), file, row.names = FALSE)
-        }
-    )
-    
-    output$exampleDownloadFilteredByF <- downloadHandler(
-        filename = "filteredData.csv",
-        content = function(file) {
-            write.csv(exampleDataFilteredByF(), file, row.names = FALSE)
-        }
-    )
     
     # Render text --------------------------------------------------------------
     samplePairsFiltered <- eventReactive(input$runAnalysis, {
@@ -882,6 +870,87 @@ server <- function(input, output, session) {
     
     addTooltip(session, "exampleSPerF", #"Sample Pair per Feature",
                paste0("The above plot shows the distribution of features according to each their respective sample pairs per feature reproducibility."))
+    
+
+    # Download Button Helpers --------------------------------------------------
+    # Analysis Tab
+    output$downloadFilteredByBoth <- downloadHandler(
+        filename = "filteredData.csv",
+        content = function(file) {
+            write.csv(dataFilteredByBoth()$filteredData, file, row.names = FALSE)
+        }
+    )
+    
+    output$downloadFilteredBySP <- downloadHandler(
+        filename = "filteredData.csv",
+        content = function(file) {
+            write.csv(dataFilteredBySP()$filteredData, file, row.names = FALSE)
+        }
+    )
+    
+    output$downloadFilteredByF <- downloadHandler(
+        filename = "filteredData.csv",
+        content = function(file) {
+            write.csv(dataFilteredByF()$filteredData, file, row.names = FALSE)
+        }
+    )
+    
+    output$downloadRemovedS <- downloadHandler(
+        filename = "removedSamples.csv",
+        content = function(file) {
+            write.csv(dataFilteredBySP()$removedSamples, file, 
+                      row.names = FALSE)
+        }
+    )
+    
+    output$downloadRemovedF <- downloadHandler(
+        filename = "removedFeatures.csv",
+        content = function(file) {
+            write.csv(dataFilteredByF()$removedFeatures, file, 
+                      row.names = FALSE)
+        }
+    )
+    
+    # Example Tab
+    output$exampleDownloadFilteredByBoth <- downloadHandler(
+        filename = "filteredData.csv",
+        content = function(file) {
+            write.csv(exampleDataFilteredByBoth()$filteredData, file, 
+                      row.names = FALSE)
+        }
+    )
+    
+    output$exampleDownloadFilteredBySP <- downloadHandler(
+        filename = "filteredData.csv",
+        content = function(file) {
+            write.csv(exampleDataFilteredBySP()$filteredData, file, 
+                      row.names = FALSE)
+        }
+    )
+    
+    output$exampleDownloadFilteredByF <- downloadHandler(
+        filename = "filteredData.csv",
+        content = function(file) {
+            write.csv(exampleDataFilteredByF()$filteredData, file, 
+                      row.names = FALSE)
+        }
+    )
+    
+    output$exampleDownloadRemovedS <- downloadHandler(
+        filename = "removedSamples.csv",
+        content = function(file) {
+            write.csv(exampleDataFilteredBySP()$removedSamples, file, 
+                      row.names = FALSE)
+        }
+    )
+    
+    output$exampleDownloadRemovedF <- downloadHandler(
+        filename = "removedFeatures.csv",
+        content = function(file) {
+            write.csv(exampleDataFilteredByF()$removedFeatures, file, 
+                      row.names = FALSE)
+        }
+    )
     
 }
 
