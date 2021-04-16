@@ -1,7 +1,7 @@
 #' @title S4 Class union
 #' @description Class union allowing \code{MarrData} slot to be a data.frame or
 #' Summarized Experiment
-#' @name data.frameORSummarizedExperiment
+#' @name data.frameORSummarizedExperiment-class
 #' @importFrom methods setClassUnion
 setClassUnion("data.frameORSummarizedExperiment",
               c("data.frame", "SummarizedExperiment"))
@@ -9,7 +9,7 @@ setClassUnion("data.frameORSummarizedExperiment",
 #' @title S4 Class union
 #' @description Class union allowing \code{MarrFeatureVars} slot to be a vector
 #' or NULL
-#' @name vectorORNull
+#' @name vectorORNull-class
 #' @importFrom methods setClassUnion
 setClassUnion("vectorORNull",
               c("vector", "NULL"))

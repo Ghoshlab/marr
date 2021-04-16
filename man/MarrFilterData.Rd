@@ -16,8 +16,13 @@ reproducibility of sample pairs, or "both" to filter both features and sample
  pairs according to their respective reproducibility. Default is "both".}
 }
 \value{
-A \code{data.frame} or \code{SummarizedExperiment}, the same as the
-data structure initially input into the \code{Marr} function
+A list of \code{data.frame}'s or a \code{SummarizedExperiment}. 
+If a \code{data.frame} was originally input into the \code{Marr} function,
+ a list with three elements, \code{filteredData}, 
+\code{removedSamples}, and \code{removedFeatures}, will be returned. If a
+\code{SummarizedExperiment} was originally input, output will be a 
+\code{SummarizedExperiment} with the assay filtered and with two metadata
+objects, \code{removedSamples} and \code{removedFeatures} added.
 }
 \description{
 Filters \code{Marr} object according to the Maximum Rank 
