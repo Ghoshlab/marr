@@ -1,0 +1,16 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - r-base=4
+  - r-tidyverse
+  - r-shiny
+  - r-shinybs
+  - r-shinyjs
+  - r-dt
+  - r-ggplot2
+  - r-dplyr
+  - r-rlang
+  - r-markdown
+  - bioconductor-marr
+  - bioconductor-msprep
