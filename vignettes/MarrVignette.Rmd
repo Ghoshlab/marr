@@ -105,7 +105,7 @@ such that, $c_s \in (0,1)$.
 Similarly, we assign a sample pair $(i,~i')$ to be reproducible if a certain
 percentage signals ($100c_m\%$) are reproducible across all features, i.e.,
 if $$ \frac{\sum_{m}{{r{_{m,(i,i')}}}}}{M}>c_m, $$
-such that, $c_s \in (0,1)$.
+such that, $c_m \in (0,1)$.
 
 The reproducible signal matrix is shown in Figure 1 below.
 ```{r, echo=FALSE, fig.cap="Reproducible Signal matrix", out.width = '100%'}
@@ -214,6 +214,18 @@ per metabolite (feature) in the $x$-axis.  In Figure 3, the higher
 percentage of reproducible sample pairs per metabolite
 (feature) in the $x$-axis would indicate stronger reproducibility
 of a metabolite (feature) across all sample pairs.
+
+## Filtering the data by reproducible features and/or sample pairs
+```{r byFeatures}
+## Filtering the data by reproducible features (first 5 rows and columns)
+MarrFilterData(Marr_output, by = "features")
+
+## Filtering the data by reproducible sample pairs (first 5 rows and columns)
+MarrFilterData(Marr_output, by = "samplePairs")
+
+## Filtering the data by both features and sample pairs (first 5 rows and columns)
+MarrFilterData(Marr_output, by = "both")
+```
 
 # Session Info
 ```{r session-info}
