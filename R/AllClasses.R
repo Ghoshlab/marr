@@ -4,7 +4,7 @@
 #' @name data.frameORSummarizedExperiment-class
 #' @importFrom methods setClassUnion
 setClassUnion("data.frameORSummarizedExperiment",
-              c("data.frame", "SummarizedExperiment"))
+              c("data.frame", "SummarizedExperiment")) 
 
 #' @title S4 Class union
 #' @description Class union allowing \code{MarrFeatureVars} slot to be a vector
