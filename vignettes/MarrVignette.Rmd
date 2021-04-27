@@ -224,7 +224,7 @@ MarrFilterData(Marr_output, by = "features")
 MarrFilterData(Marr_output, by = "samplePairs")
 
 ## Filtering the data by both features and sample pairs (first 5 rows and columns)
-MarrFilterData(data_Marr, by = "both")
+MarrFilterData(Marr_output, by = "both")
 ```
 
 # Session Info
