@@ -8,4 +8,4 @@ src/*.dll
 inst/doc
 .DS_Store
 *.Rproj
-
+vignettes/*.html
