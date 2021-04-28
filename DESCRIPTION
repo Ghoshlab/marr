@@ -1,8 +1,8 @@
 Package: marr
 Type: Package
 Title: Maximum rank reproducibility
-Version: 1.00.02
-Date: 2021-03-06
+Version: 1.00.03
+Date: 2021-04-27
 Authors@R:
     c(person("Tusharkanti", "Ghosh",
            email = "tusharkantighosh30@gmail.com",
@@ -42,7 +42,9 @@ Description: marr (Maximum Rank Reproducibility) is a
           Furthermore, our approach also allows the users to select
           optimal filtering threshold values for the
           identification of reproducible features and sample pairs
-          based on output visualization checks (histograms). 
+          based on output visualization checks (histograms). This 
+          package also provides the subset of data filtered by 
+          reproducible features and/or sample pairs.
 biocViews: QualityControl, Metabolomics, MassSpectrometry, RNASeq, ChIPSeq
 BugReports: https://github.com/Ghoshlab/marr/issues
 RoxygenNote: 7.1.1
