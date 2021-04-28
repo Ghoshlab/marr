@@ -1,3 +1,10 @@
+#' @import shiny
+#' @import shinyBS
+#' @import shinyjs
+#' @import dplyr
+#' @import rlang
+#' @import markdown
+
 library(shiny)
 library(shinyBS)
 library(shinyjs)

@@ -16,7 +16,8 @@ Authors@R:
     person("Debashis", "Ghosh",
            role = c("aut", "cph")))
 Imports: Rcpp, SummarizedExperiment, utils,
-     methods, ggplot2, dplyr, magrittr, rlang, S4Vectors
+     methods, ggplot2, dplyr, magrittr, rlang, S4Vectors, shiny,
+     shinyBS, shinyjs, markdown
 LinkingTo: Rcpp
 Depends: R (>= 4.0)
 Suggests: 
