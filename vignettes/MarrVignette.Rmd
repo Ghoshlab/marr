@@ -217,13 +217,13 @@ of a metabolite (feature) across all sample pairs.
 
 ## Filtering the data by reproducible features and/or sample pairs
 ```{r byFeatures}
-## Filtering the data by reproducible features (first 5 rows and columns)
+## Filtering the data by reproducible features
 MarrFilterData(Marr_output, by = "features")
 
-## Filtering the data by reproducible sample pairs (first 5 rows and columns)
+## Filtering the data by reproducible sample pairs
 MarrFilterData(Marr_output, by = "samplePairs")
 
-## Filtering the data by both features and sample pairs (first 5 rows and columns)
+## Filtering the data by both features and sample pairs
 MarrFilterData(Marr_output, by = "both")
 ```
 
