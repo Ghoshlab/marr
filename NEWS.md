@@ -1,4 +1,4 @@
-# marr 1.2.1 (devel 3.13)
+# marr 1.1.2 (devel 3.13)
 
 * added feature-label output on May 10, 2021
 
