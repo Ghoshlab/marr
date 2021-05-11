@@ -1,6 +1,6 @@
 # marr 1.1.2 (devel 3.13)
 
-* added feature-label output on May 10, 2021
+* added feature/samplePair-label output on May 10, 2021
 
 # marr 1.00.03 (Release 3.12)
 
