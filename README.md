@@ -22,9 +22,12 @@ Association*:
 > Journal of the American Statistical Association 113.523 (2018):
 > 1028-1039. <https://doi.org/10.1080/01621459.2017.1397521>
 
+The marr `reproducibility` of metabolomics data 
+published in *BMC Bioinformatics (Research)*:
+
 > Ghosh, T., Philtron, D., Zhang, W. et al. "Reproducibility of mass spectrometry 
 > based metabolomics data". BMC Bioinformatics 22, 423 (2021). 
-> https://doi.org/10.1186/s12859-021-04336-9
+> <https://doi.org/10.1186/s12859-021-04336-9>
 
 ### Installing marr
 
