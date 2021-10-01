@@ -24,8 +24,9 @@ Association*:
 
 `Paper (in preparation)`
 
-> Ghosh, Tusharkanti, et al. “Reproducibility of Mass Spectrometry based
-> Metabolomics Data”
+> Ghosh, T., Philtron, D., Zhang, W. et al. "Reproducibility of mass spectrometry 
+> based metabolomics data". BMC Bioinformatics 22, 423 (2021). 
+> https://doi.org/10.1186/s12859-021-04336-9
 
 ### Installing marr
 
